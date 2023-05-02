@@ -1,35 +1,78 @@
-import 'package:another_carousel_pro/another_carousel_pro.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/Service/product_services.dart';
+import 'package:flutter_ecommerce_app/Service/urls.dart';
+import 'package:flutter_ecommerce_app/ui/components/shimmer_frave.dart';
 
-class ProductSlider extends StatefulWidget {
-  const ProductSlider({super.key});
 
-  @override
-  State<ProductSlider> createState() => _ProductSliderState();
-}
+import '../../../../Models/Response/response_slide_products.dart';
 
-class _ProductSliderState extends State<ProductSlider> {
+class ProductSlider extends StatelessWidget {
+  // final SlideProduct slide;
+  const ProductSlider({
+    Key? key,
+    /*required this.slide*/
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 10, right: 15),
       child: SizedBox(
-        height: 200,
-        child: Carousel(
-          images: const [
-            AssetImage("assets/chaussure.png"),
-            AssetImage("assets/productsimages/Groupe3.png"),
-            AssetImage("assets/chaussure.png"),
-          ],
-          borderRadius: true,
-          radius: const Radius.circular(30),
-          dotBgColor: Colors.transparent,
-          animationCurve: Curves.fastOutSlowIn,
-          animationDuration: const Duration(
-            milliseconds: 800,
-          ),
+        height: 190,
+        width: MediaQuery.of(context).size.width,
+        child: FutureBuilder<List<SlideProduct>>(
+          future: productServices.listProductsHomeCarousel(),
+          builder: (context, snapshot) {
+            return !snapshot.hasData
+                ? const ShimmerFrave()
+                : CarouselSlider.builder(
+                    itemCount: snapshot.data!.length,
+                    options: CarouselOptions(
+                      enableInfiniteScroll: true,
+                      autoPlay: true,
+                      autoPlayInterval: const Duration(seconds: 3),
+                      viewportFraction: 1,
+                    ),
+                    itemBuilder: (context, index, realIndex) {
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                              URLS.baseUrl + snapshot.data![index].image,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+          },
         ),
+        // Positioned(
+        //   bottom: 20,
+        //   left: 20,
+        //   child: Text(
+        //     slide.nameCarousel,
+        //     style: const TextStyle(
+        //       color: Colors.white,
+        //       fontSize: 18,
+        //     ),
+        //   ),
+        // ),
+        // Positioned(
+        //   bottom: 20,
+        //   right: 20,
+        //   child: Text(
+        //     'Text 2',
+        //     style: TextStyle(
+        //       color: Colors.white,
+        //       fontSize: 18,
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }
