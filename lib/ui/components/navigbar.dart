@@ -140,7 +140,7 @@ class NavigBar extends StatelessWidget {
                       : inActiveIconColor,
                 ),
                 onPressed: () =>
-                    Navigator.pushNamed(context, FavoriteScreen.routeName),
+                    Navigator.pushNamed(context, FavoritePage.routeName),
               ),
               IconButton(
                 icon: Icon(

@@ -66,7 +66,7 @@ class Login_Drawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.favorite),
             title: const Text('Favorites'),
-            onTap: () => Navigator.pushNamed(context, FavoriteScreen.routeName),
+            onTap: () => Navigator.pushNamed(context, FavoritePage.routeName),
           ),
           ListTile(
             leading: const Icon(Icons.shopping_basket),

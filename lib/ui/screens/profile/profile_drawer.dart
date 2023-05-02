@@ -197,7 +197,7 @@ class _Drawer_profileState extends State<Drawer_profile> {
               leading: const Icon(Icons.favorite),
               title: const Text('Favorites'),
               onTap: () =>
-                  Navigator.pushNamed(context, FavoriteScreen.routeName),
+                  Navigator.pushNamed(context, FavoritePage.routeName),
             ),
             ListTile(
               leading: const Icon(Icons.shopping_basket),

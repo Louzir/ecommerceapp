@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.pop(context);
           userBloc.add(OnGetUserEvent());
           Navigator.pushAndRemoveUntil(
-              context, routeSlide(page: const Home()), (_) => false);
+              context, routeSlide(page:  Home()), (_) => false);
         }
       },
       child: Scaffold(

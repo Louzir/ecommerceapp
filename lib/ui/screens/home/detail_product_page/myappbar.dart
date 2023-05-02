@@ -1,17 +1,19 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/ui/screens/home/home.dart';
+import 'package:flutter_ecommerce_app/ui/components/widgets.dart';
 
-class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const MyAppBar({Key? key})
-      : preferredSize = const Size.fromHeight(kToolbarHeight),
-        super(key: key);
+
+class MyAppBar extends StatefulWidget {
+  final String nameProduct;
+  final String uidProduct;
+
+  const MyAppBar({
+    Key? key,
+    required this.nameProduct,
+    required this.uidProduct,
+  }) : super(key: key);
 
   @override
-  final Size preferredSize;
-
-  @override
+  // ignore: library_private_types_in_public_api
   _MyAppBarState createState() => _MyAppBarState();
 }
 
@@ -56,18 +58,19 @@ class _MyAppBarState extends State<MyAppBar> {
           : Row(
               children: [
                 IconButton(
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.black,
+                  splashRadius: 20,
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded,
+                      color: Colors.black),
+                  onPressed: () => Navigator.pop(context),
+                ),
+                TextFrave(
+                  text: widget.nameProduct,
+                  overflow: TextOverflow.ellipsis,
+                  fontSize: 19,
+                  fontWeight: FontWeight.bold,
+                  color: const Color(
+                    0xFF222D61,
                   ),
-                  onPressed: () => Navigator.pushNamed(context, Home.routeName),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                const Text(
-                  "Nike Air Max",
-                  style: TextStyle(color: Colors.black),
                 ),
               ],
             ),

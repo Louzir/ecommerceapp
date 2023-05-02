@@ -1,51 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/ui/components/navigbar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_ecommerce_app/Bloc/Product/product_bloc.dart';
+import 'package:flutter_ecommerce_app/Helpers/helpers.dart';
+import 'package:flutter_ecommerce_app/Models/Response/response_products_home.dart';
+import 'package:flutter_ecommerce_app/Service/product_services.dart';
 import 'package:flutter_ecommerce_app/ui/components/enums.dart';
+import 'package:flutter_ecommerce_app/ui/components/navigbar.dart';
+import 'package:flutter_ecommerce_app/ui/components/shimmer_frave.dart';
+import 'package:flutter_ecommerce_app/ui/components/widgets.dart';
 import 'package:flutter_ecommerce_app/ui/screens/favori/components/favori_body.dart';
 
-class FavoriteScreen extends StatefulWidget {
-  static String routeName = "/favori";
-
+class FavoritePage extends StatefulWidget {
+  static String routeName = "/favoritePage";
   @override
-  State<FavoriteScreen> createState() => _FavoriteScreenState();
+  State<FavoritePage> createState() => _FavoritePageState();
 }
 
-class _FavoriteScreenState extends State<FavoriteScreen> {
+class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: builAppBar(context),
-      body: Bodyfavori(),
-      bottomNavigationBar: const NavigBar(selectedMenu: MenuState.favorites),
-    );
-  }
+    final size = MediaQuery.of(context).size;
 
-  AppBar builAppBar(BuildContext context) {
-    return AppBar(
-      centerTitle: true,
-      backgroundColor: Colors.white,
-      elevation: 0.5,
-      leading: IconButton(
-        icon: const Icon(
-          Icons.arrow_back_ios,
-          color: Colors.black,
-        ), // icône à utiliser
-        onPressed: () {
+    return BlocListener<ProductBloc, ProductState>(
+      listener: (context, state) {
+        if (state is LoadingProductState) {
+          modalLoadingShort(context);
+        } else if (state is FailureProductState) {
           Navigator.pop(context);
-        },
-      ),
-      title: Column(
-        children: [
-          const Text(
-            "Favorites",
-            style: TextStyle(color: Colors.black),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            "0 items",
-            style: Theme.of(context).textTheme.bodySmall,
-          )
-        ],
+          errorMessageSnack(context, state.error);
+        } else if (state is SuccessProductState) {
+          Navigator.pop(context);
+          setState(() {});
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Color(0xffF5F5F5),
+        appBar: AppBar(
+          title: const TextFrave(
+              text: 'Favorites',
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.w500),
+          centerTitle: true,
+          backgroundColor: Color(0xfff2f2f2),
+          elevation: 0,
+          automaticallyImplyLeading: false,
+        ),
+        body: Stack(
+          children: [
+            FutureBuilder<List<ListProducts>>(
+                future: productServices.allFavoriteProducts(),
+                builder: (context, snapshot) => !snapshot.hasData
+                    ? Column(
+                        children: const [
+                          ShimmerFrave(),
+                          SizedBox(height: 10.0),
+                          ShimmerFrave(),
+                          SizedBox(height: 10.0),
+                          ShimmerFrave(),
+                        ],
+                      )
+                    : ListFavoriteProduct(products: snapshot.data!)),
+            Positioned(
+              bottom: 0,
+              child: Container(
+                  width: size.width,
+                  child: Align(
+                    child: const NavigBar(selectedMenu: MenuState.favorites),
+                  )),
+            ),
+          ],
+        ),
       ),
     );
   }
