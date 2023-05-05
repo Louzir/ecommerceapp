@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/Helpers/validation_form.dart';
 import 'package:flutter_ecommerce_app/ui/screens/forgot_pass/forgot_pass.dart';
@@ -11,6 +13,8 @@ import '../../components/size_config.dart';
 
 class LoginPage extends StatefulWidget {
   static String routeName = "/login";
+
+  const LoginPage({super.key});
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -59,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.pop(context);
           userBloc.add(OnGetUserEvent());
           Navigator.pushAndRemoveUntil(
-              context, routeSlide(page:  Home()), (_) => false);
+              context, routeSlide(page:  const Home()), (_) => false);
         }
       },
       child: Scaffold(
@@ -305,7 +309,7 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SignupPage()));
+                              builder: (context) => const SignupPage()));
                     },
                     child: const Text('SignUp',
                         style: TextStyle(fontSize: 16, color: Colors.black)),

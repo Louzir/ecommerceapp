@@ -3,7 +3,6 @@ import 'package:flutter_ecommerce_app/ui/screens/profile/my_shopping/order_detai
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/Models/Response/response_order_buy.dart';
 import 'package:flutter_ecommerce_app/Service/product_services.dart';
-import 'package:flutter_ecommerce_app/ui/themes/colors_frave.dart';
 import 'package:flutter_ecommerce_app/ui/components/widgets.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -76,7 +75,7 @@ class _DetailsProductsBuy extends StatelessWidget {
               TextFrave(
                   text: ordersBuy[i].receipt,
                   fontSize: 21,
-                  color: ColorsFrave.primaryColorFrave,
+                  color: Colors.redAccent,
                   fontWeight: FontWeight.w500),
               const SizedBox(height: 10.0),
               Row(
@@ -86,7 +85,7 @@ class _DetailsProductsBuy extends StatelessWidget {
                       text: 'Date ', fontSize: 18, color: Colors.grey),
                   TextFrave(
                       text:
-                          timeago.format(ordersBuy[i].createdAt, locale: 'es'),
+                          timeago.format(ordersBuy[i].createdAt, locale: 'fr'),
                       fontSize: 18),
                 ],
               ),
@@ -97,7 +96,7 @@ class _DetailsProductsBuy extends StatelessWidget {
                   const TextFrave(
                       text: 'Amount ', fontSize: 18, color: Colors.grey),
                   TextFrave(
-                      text: '\$ ${ordersBuy[i].amount}',
+                      text: '${ordersBuy[i].amount} TND',
                       fontSize: 20,
                       fontWeight: FontWeight.w500),
                 ],

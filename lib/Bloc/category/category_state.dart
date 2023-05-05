@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 part of 'category_bloc.dart';
 
 @immutable
@@ -5,7 +7,7 @@ abstract class CategoryState {
   final int? uidCategory;
   final String? nameCategory;
 
-  CategoryState({this.uidCategory, this.nameCategory});
+  const CategoryState({this.uidCategory, this.nameCategory});
 }
 
 class CategoryInitial extends CategoryState {}
@@ -14,6 +16,6 @@ class SetSelectCategoryState extends CategoryState {
   final uid;
   final category;
 
-  SetSelectCategoryState(this.uid, this.category)
+  const SetSelectCategoryState(this.uid, this.category)
       : super(uidCategory: uid, nameCategory: category);
 }

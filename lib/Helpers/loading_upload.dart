@@ -23,7 +23,7 @@ void loadinUploadFile(BuildContext context){
              duration: const Duration(seconds: 1500),
              builder: (context, double value, child) {
                int percent = ( value * 100 ).ceil();
-               return Container(
+               return SizedBox(
                  width: 230,
                  height: 230,
                  child: Stack(

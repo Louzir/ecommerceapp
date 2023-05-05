@@ -8,6 +8,8 @@ import 'package:flutter_ecommerce_app/Helpers/validation_form.dart';
 
 class SignupPage extends StatefulWidget {
   static String routeName = "/signup";
+
+  const SignupPage({super.key});
   @override
   State<SignupPage> createState() => _SignUpPageState();
 }
@@ -65,7 +67,7 @@ class _SignUpPageState extends State<SignupPage> {
           modalSuccess(context, 'USER CREATED', onPressed: () {
             clear();
             Navigator.pushReplacement(
-                context, routeSlide(page:  LoginPage()));
+                context, routeSlide(page:  const LoginPage()));
           });
         }
         if (state is FailureUserState) {
@@ -304,7 +306,7 @@ class _SignUpPageState extends State<SignupPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>  LoginPage()));
+                              builder: (context) =>  const LoginPage()));
                     },
                     child: const Text('LogIn',
                         style: TextStyle(fontSize: 16, color: Colors.black)),

@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,8 +17,6 @@ import 'package:flutter_ecommerce_app/ui/screens/home/detail_product_page/seemor
 import 'package:flutter_ecommerce_app/ui/screens/home/detail_product_page/taille.dart';
 import 'package:flutter_ecommerce_app/ui/themes/colors_frave.dart';
 
-import '../../../components/navigbar.dart';
-import '../../../components/enums.dart';
 import 'myappbar.dart';
 
 class DetailsProductPage extends StatefulWidget {
@@ -59,7 +57,7 @@ class _DetailsProductPageState extends State<DetailsProductPage> {
         }
       },
       child: Scaffold(
-        bottomNavigationBar: const NavigBar(selectedMenu: MenuState.home),
+        //bottomNavigationBar: const NavigBar(selectedMenu: MenuState.home),
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Stack(
@@ -137,67 +135,73 @@ class _DetailsProductPageState extends State<DetailsProductPage> {
                   const SizedBox(
                     height: 50,
                   ),
-                  Positioned(
-                    bottom: 0,
-                    child: Container(
-                      height: 75,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey[200]!,
-                                blurRadius: 15,
-                                spreadRadius: 15)
-                          ]),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            height: 55,
-                            width: size.width * .45,
-                            child: TextFrave(
-                                text: '\$ ${widget.product.price}',
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          // SizedBox(width: 15.0),
-                          Container(
-                            height: 55,
-                            width: size.width * .45,
-                            decoration: BoxDecoration(
-                                color: ColorsFrave.primaryColorFrave,
-                                borderRadius: BorderRadius.circular(25.0)),
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(50.0))),
-                              child: const TextFrave(
-                                  text: 'Add to cart',
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500),
-                              onPressed: () {
-                                final productSelect = ProductCart(
-                                    uidProduct:
-                                        widget.product.uidProduct.toString(),
-                                    image: widget.product.picture,
-                                    name: widget.product.nameProduct,
-                                    price: widget.product.price.toDouble(),
-                                    amount: 1);
-
-                                productBloc.add(
-                                    OnAddProductToCartEvent(productSelect));
-                              },
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
                 ],
+              ),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                  height: 75,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey[200]!,
+                        blurRadius: 15,
+                        spreadRadius: 15)
+                  ]),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        height: 55,
+                        width: size.width * .45,
+                        child: TextFrave(
+                            text: '${widget.product.price} TND',
+                            fontSize: 21,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      // SizedBox(width: 15.0),
+                      Container(
+                        height: 55,
+                        width: size.width * .45,
+                        decoration: BoxDecoration(
+                            color: ColorsFrave.primaryColorFrave,
+                            borderRadius: BorderRadius.circular(25.0)),
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                              backgroundColor: Colors.redAccent,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50.0))),
+                          child: const TextFrave(
+                              text: 'Add to cart',
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500),
+                          onPressed: () {                           
+                            final productSelect = ProductCart(
+                                uidProduct: widget.product.uidProduct.toString(), 
+                                image: widget.product.picture, 
+                                name: widget.product.nameProduct, 
+                                price: widget.product.price.toDouble(),
+                                amount: 1
+                            );
+    
+                            productBloc.add( OnAddProductToCartEvent( productSelect ));    
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
                 //
                 //
@@ -330,11 +334,4 @@ class _DetailsProductPageState extends State<DetailsProductPage> {
                 //     height: 50,
                 //   ),
                 // ]),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+             

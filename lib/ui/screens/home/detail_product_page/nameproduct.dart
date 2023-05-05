@@ -36,50 +36,48 @@ class _NameProductState extends State<NameProduct> {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextFrave(
-                  text: widget.nameProduct,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Color(
-                    0xFF595959,
-                  ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextFrave(
+                text: widget.nameProduct,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: const Color(
+                  0xFF595959,
                 ),
-                CircleAvatar(
-                  backgroundColor: Color(0xffF5F5F5),
-                  radius: 24,
-                  child: IconButton(
-                    icon: _isFavorite
-                        ? Icon(Icons.favorite_rounded, color: Colors.red)
-                        : Icon(Icons.favorite_border_rounded,
-                            color: Colors.red),
-                    onPressed: () {
-                      setState(() {
-                        _isFavorite = !_isFavorite;
-                      });
-                      productBloc.add(OnAddOrDeleteProductFavoriteEvent(
-                          uidProduct: widget.uidProduct));
-                    },
-                  ),
-                ),
-              ],
-            ),
-            TextFrave(
-              text: '${widget.price.toString()} TND',
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-              color: Color(
-                0xFF222D61,
               ),
+              CircleAvatar(
+                backgroundColor: const Color(0xffF5F5F5),
+                radius: 24,
+                child: IconButton(
+                  icon: _isFavorite
+                      ? const Icon(Icons.favorite_rounded, color: Colors.red)
+                      : const Icon(Icons.favorite_border_rounded,
+                          color: Colors.red),
+                  onPressed: () {
+                    setState(() {
+                      _isFavorite = !_isFavorite;
+                    });
+                    productBloc.add(OnAddOrDeleteProductFavoriteEvent(
+                        uidProduct: widget.uidProduct));
+                  },
+                ),
+              ),
+            ],
+          ),
+          TextFrave(
+            text: '${widget.price.toString()} TND',
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            color: const Color(
+              0xFF222D61,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

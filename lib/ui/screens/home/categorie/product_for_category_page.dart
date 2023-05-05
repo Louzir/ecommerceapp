@@ -19,9 +19,10 @@ class CategoryProductsPage extends StatefulWidget {
   final String uidCategory;
   final String category;
 
-  const CategoryProductsPage({ required this.uidCategory, required this.category});
+  const CategoryProductsPage({super.key,  required this.uidCategory, required this.category});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CategoryProductsPageState createState() => _CategoryProductsPageState();
 }
 
@@ -47,7 +48,7 @@ class _CategoryProductsPageState extends State<CategoryProductsPage> {
         }
       },
       child: Scaffold(
-        backgroundColor: Color(0xfff5f5f5),
+        backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           title: TextFrave(text: widget.category, color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
           centerTitle: true,
@@ -55,7 +56,7 @@ class _CategoryProductsPageState extends State<CategoryProductsPage> {
           backgroundColor: Colors.white,
           leading: IconButton(
             splashRadius: 20,
-            icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black),
             onPressed: () => Navigator.pop(context),
           ),
         ),
@@ -63,8 +64,8 @@ class _CategoryProductsPageState extends State<CategoryProductsPage> {
           future: productServices.getProductsForCategories(widget.uidCategory),
           builder: (context, snapshot) 
           => !snapshot.hasData
-          ? Column(
-              children: const [
+          ? const Column(
+              children: [
                 ShimmerFrave(),
                 SizedBox(height: 10.0),
                 ShimmerFrave(),
@@ -73,7 +74,7 @@ class _CategoryProductsPageState extends State<CategoryProductsPage> {
               ], 
           )
           : Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: StaggeredDualView(
               itemCount: snapshot.data!.length,
               spacing: 5,
@@ -95,6 +96,7 @@ class _CategoryProductsPageState extends State<CategoryProductsPage> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              // ignore: avoid_unnecessary_containers
                               Container(
                                   child: Hero(
                                     tag: snapshot.data![i].uidProduct.toString(),
@@ -115,7 +117,7 @@ class _CategoryProductsPageState extends State<CategoryProductsPage> {
                               )
                             : InkWell(
                                 onTap: () => productBloc.add( OnAddOrDeleteProductFavoriteEvent(uidProduct: snapshot.data![i].uidProduct.toString())),
-                                child: Icon(Icons.favorite_outline_rounded)
+                                child: const Icon(Icons.favorite_outline_rounded)
                               )
                           ),
                         ],

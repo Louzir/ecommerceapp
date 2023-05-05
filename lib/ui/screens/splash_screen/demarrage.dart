@@ -69,7 +69,7 @@ class FirstPageState extends State<Screen1> with TickerProviderStateMixin {
         } else if (state is SuccessAuthState) {
           userBloc.add(OnGetUserEvent());
           Navigator.of(context)
-              .pushAndRemoveUntil(routeSlide(page:  Home()), (_) => false);
+              .pushAndRemoveUntil(routeSlide(page: const Home()), (_) => false);
         }
       },
       child: Scaffold(

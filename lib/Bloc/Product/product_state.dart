@@ -1,4 +1,6 @@
 
+// ignore_for_file: annotate_overrides, overridden_fields
+
 part of 'product_bloc.dart';
 
 @immutable
@@ -11,7 +13,7 @@ abstract class ProductState {
   final double insurance;
   final String? pathImage;
 
-  ProductState({
+  const ProductState({
     this.products,
     this.total  = 00.0,
     this.amount = 0,
@@ -33,7 +35,7 @@ class SuccessProductState extends ProductState {}
 class FailureProductState extends ProductState {
   final String error;
 
-  FailureProductState(this.error);
+  const FailureProductState(this.error);
 }
 
 
@@ -42,7 +44,7 @@ class SetAddProductToCartState extends ProductState{
   final double total;
   final int amount;
 
-  SetAddProductToCartState({
+  const SetAddProductToCartState({
     required this.products,
     required this.total,
     required this.amount
@@ -53,7 +55,7 @@ class SetAddProductToCartState extends ProductState{
 class SetImageForProductState extends ProductState {
   final String path;
 
-  SetImageForProductState(this.path):super(pathImage: path);
+  const SetImageForProductState(this.path):super(pathImage: path);
 }
 
 

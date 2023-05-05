@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/Bloc/General/general_bloc.dart';
 import 'package:flutter_ecommerce_app/ui/screens/favori/favori_screen.dart';
 import 'package:flutter_ecommerce_app/ui/screens/home/home.dart';
-import 'package:flutter_ecommerce_app/ui/screens/panier/panier_screen.dart';
+import 'package:flutter_ecommerce_app/ui/screens/profile/profile_drawer.dart';
 import 'package:flutter_ecommerce_app/ui/screens/store/screen_4.dart';
 import 'constants.dart';
 import 'package:flutter_ecommerce_app/ui/components/enums.dart';
@@ -91,70 +91,71 @@ class NavigBar extends StatelessWidget {
       buildWhen: (previous, current) => previous != current,
       builder: (context, state) => AnimatedOpacity(
         duration: const Duration(milliseconds: 250),
-        opacity: ( state.showMenuHome ) ? 1 : 0,
-    child:  Container(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            offset: const Offset(0, -15),
-            blurRadius: 20,
-            color: const Color(0xFFDADADA).withOpacity(0.15),
-          ),
-        ],
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-      ),
-      child: SafeArea(
-          top: false,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                icon: Icon(
-                  Icons.home,
-                  color: MenuState.home == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () => Navigator.pushNamed(context, Home.routeName),
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.store,
-                  color: MenuState.store == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () =>
-                    Navigator.pushNamed(context, Screen4.routeName),
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.favorite,
-                  color: MenuState.favorites == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () =>
-                    Navigator.pushNamed(context, FavoritePage.routeName),
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.shopping_basket,
-                  color: MenuState.panier == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () =>
-                    Navigator.pushNamed(context, PanierScreen.routeName),
+        opacity: (state.showMenuHome) ? 1 : 0,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                offset: const Offset(0, -15),
+                blurRadius: 20,
+                color: const Color(0xFFDADADA).withOpacity(0.15),
               ),
             ],
-          )),
-    ),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          child: SafeArea(
+              top: false,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.home,
+                      color: MenuState.home == selectedMenu
+                          ? kPrimaryColor
+                          : inActiveIconColor,
+                    ),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, Home.routeName),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.store,
+                      color: MenuState.store == selectedMenu
+                          ? kPrimaryColor
+                          : inActiveIconColor,
+                    ),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, Screen4.routeName),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.favorite,
+                      color: MenuState.favorites == selectedMenu
+                          ? kPrimaryColor
+                          : inActiveIconColor,
+                    ),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, FavoritePage.routeName),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.person,
+                      color: MenuState.profile == selectedMenu
+                          ? kPrimaryColor
+                          : inActiveIconColor,
+                    ),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, Drawer_profile.routeName),
+                  ),
+                ],
+              )),
+        ),
       ),
     );
   }

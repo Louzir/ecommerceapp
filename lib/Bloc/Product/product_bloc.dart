@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter_ecommerce_app/service/product_services.dart';
 import 'package:meta/meta.dart';
@@ -13,7 +15,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   List<ProductCart> product = [];
 
   ProductBloc() : super(ProductInitial()) {
-    print("bloc has been");
     on<OnAddOrDeleteProductFavoriteEvent>(_addOrDeleteProductFavorite);
     on<OnAddProductToCartEvent>(_addProductToCart);
     on<OnDeleteProductToCartEvent>(_deleteProductCart);
@@ -40,7 +41,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         emit(FailureProductState(data.message));
       }
     } catch (e) {
-      print(e.toString());
       emit(FailureProductState(e.toString()));
     }
   }

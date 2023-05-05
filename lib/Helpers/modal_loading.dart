@@ -16,7 +16,7 @@ void modalLoading(BuildContext context, String text) {
               children: [
                 TextFrave(
                     text: 'E_commerce ',
-                    color: ColorsFrave.primaryColorFrave,
+                    color: Colors.redAccent,
                     fontWeight: FontWeight.w500),
                 TextFrave(text: ' marque_B', fontWeight: FontWeight.w500),
               ],

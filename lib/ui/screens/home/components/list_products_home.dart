@@ -9,7 +9,7 @@ import 'package:flutter_ecommerce_app/ui/components/widgets.dart';
 import 'package:flutter_ecommerce_app/ui/screens/home/detail_product_page/DetailsProductPage.dart';
 
 class ListProductsForHome extends StatelessWidget {
-  const ListProductsForHome({Key? key}) : super(key: key);
+   const ListProductsForHome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +58,7 @@ class ListProductsForHome extends StatelessWidget {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            // ignore: avoid_unnecessary_containers
                             Container(
                               child: Hero(
                                   tag: snapshot.data![i].uidProduct.toString(),
@@ -69,15 +70,15 @@ class ListProductsForHome extends StatelessWidget {
                               text: snapshot.data![i].nameProduct,
                               fontSize: 14,
                               overflow: TextOverflow.ellipsis,
-                              color: Color(
+                              color: const Color(
                                 0xFF595959,
                               ),
                             ),
                             TextFrave(
-                              text: ' ${snapshot.data![i].price} \TND',
+                              text: ' ${snapshot.data![i].price} TND',
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: Color(
+                              color: const Color(
                                 0xFF222D61,
                               ),
                             ),
@@ -125,8 +126,10 @@ class ListProductsForHome extends StatelessWidget {
                                             uidProduct: snapshot
                                                 .data![i].uidProduct
                                                 .toString())),
-                                    child:
-                                        Icon(Icons.favorite_outline_rounded))),
+                                    child: const Icon(
+                                        Icons.favorite_outline_rounded)
+                           )
+                         ),
                       ],
                     ),
                   ),

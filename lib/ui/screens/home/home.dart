@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ecommerce_app/Bloc/Auth/auth_bloc.dart';
 import 'package:flutter_ecommerce_app/Bloc/General/general_bloc.dart';
 import 'package:flutter_ecommerce_app/Bloc/user/user_bloc.dart';
 import 'package:flutter_ecommerce_app/Helpers/helpers.dart';
@@ -9,8 +8,10 @@ import 'package:flutter_ecommerce_app/Service/urls.dart';
 import 'package:flutter_ecommerce_app/ui/components/size_config.dart';
 import 'package:flutter_ecommerce_app/ui/components/widgets.dart';
 import 'package:flutter_ecommerce_app/ui/screens/home/slider/slider.dart';
+import 'package:flutter_ecommerce_app/ui/screens/panier/panier_screen.dart';
 import 'package:flutter_ecommerce_app/ui/screens/profile/profile_drawer.dart';
 import 'package:flutter_ecommerce_app/ui/themes/colors_frave.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../Bloc/Product/product_bloc.dart';
 import '../../components/navigbar.dart';
 import '../../components/enums.dart';
@@ -22,6 +23,8 @@ import 'components/sectiontitle.dart';
 
 class Home extends StatefulWidget {
   static String routeName = "/Home";
+
+  const Home({super.key});
   @override
   State<Home> createState() => Home4State();
 }
@@ -41,7 +44,7 @@ class Home4State extends State<Home> {
           setState(() {});
         }
       },
-      child: Scaffold(
+      child: const Scaffold(
         backgroundColor: Color(0xfff5f5f5),
         body: Stack(
           children: [
@@ -54,7 +57,7 @@ class Home4State extends State<Home> {
 }
 
 class HomePage extends StatefulWidget {
-  static String routeName = "/Home";
+  const HomePage({super.key});
   @override
   HomePage4State createState() => HomePage4State();
 }
@@ -92,7 +95,7 @@ class HomePage4State extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const Drawer_profile(),
+      drawer: const Drawer_profile(),
       bottomNavigationBar: const NavigBar(selectedMenu: MenuState.home),
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -100,45 +103,62 @@ class HomePage4State extends State<HomePage> {
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.black),
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            RichText(
-              textAlign: TextAlign.start,
-              text: const TextSpan(
-                text: "Nom de boutique",
-                style: TextStyle(
+            const Row(
+              children: [
+                TextFrave(
+                  text: 'E_commerce ',
+                  color: Colors.redAccent,
+                  fontWeight: FontWeight.w500,
                   fontSize: 15,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
                 ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: '\nOuvert',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.green,
+                TextFrave(
+                  text: 'marque_B',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15,
+                ),
+              ],
+            ),
+            InkWell(
+              borderRadius: BorderRadius.circular(20.0),
+              onTap: () => Navigator.of(context).pushAndRemoveUntil(
+                  routeSlide(page: const PanierScreen()), (_) => false),
+              child: Stack(
+                children: [
+                  FadeInRight(
+                      child: SizedBox(
+                          height: 32,
+                          width: 32,
+                          child: SvgPicture.asset('assets/bolso-negro.svg',
+                              height: 25))),
+                  Positioned(
+                    left: 0,
+                    top: 12,
+                    child: FadeInDown(
+                      child: Container(
+                        height: 20,
+                        width: 20,
+                        decoration: const BoxDecoration(
+                            color: ColorsFrave.primaryColorFrave,
+                            shape: BoxShape.circle),
+                        child: Center(
+                            child: BlocBuilder<ProductBloc, ProductState>(
+                                builder: (context, state) => state.amount == 0
+                                    ? const TextFrave(
+                                        text: '0',
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold)
+                                    : TextFrave(
+                                        text: '${state.products!.length}',
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold))),
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: ' Jusqu’à 9:00 Pm',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey,
-                    ),
-                  ),
+                  )
                 ],
               ),
-            ),
-            IconButton(
-              icon: const Padding(
-                padding: EdgeInsets.only(top: 14, right: 10),
-                child: Icon(Icons.keyboard_arrow_down),
-              ),
-              onPressed: () {
-                // add onPressed callback
-              },
-            ),
+            )
           ],
         ),
       ),
@@ -260,7 +280,7 @@ class HomePage4State extends State<HomePage> {
               const SizedBox(
                 height: 10,
               ),
-              ListCategoriesHome(),
+              const ListCategoriesHome(),
               const SizedBox(
                 height: 8,
               ),

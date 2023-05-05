@@ -12,6 +12,7 @@ class AccessPermission {
       case PermissionStatus.granted:
           final XFile? imagePath = await _picker.pickImage(source: source);
           if( imagePath != null ){
+            // ignore: use_build_context_synchronously
             BlocProvider.of<UserBloc>(context).add( OnUpdateProfilePictureEvent(imagePath.path) );
           }
         break;
@@ -32,6 +33,7 @@ class AccessPermission {
       case PermissionStatus.granted:
           final XFile? imagePath = await _picker.pickImage(source: source);
           if( imagePath != null ){
+            // ignore: use_build_context_synchronously
             BlocProvider.of<ProductBloc>(context).add( OnSelectPathImageProductEvent(imagePath.path) );
           }
         break;

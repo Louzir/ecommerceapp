@@ -7,11 +7,14 @@ import 'package:flutter_ecommerce_app/Service/product_services.dart';
 import 'package:flutter_ecommerce_app/ui/components/enums.dart';
 import 'package:flutter_ecommerce_app/ui/components/navigbar.dart';
 import 'package:flutter_ecommerce_app/ui/components/shimmer_frave.dart';
-import 'package:flutter_ecommerce_app/ui/components/widgets.dart';
 import 'package:flutter_ecommerce_app/ui/screens/favori/components/favori_body.dart';
+
+import '../Home/home.dart';
 
 class FavoritePage extends StatefulWidget {
   static String routeName = "/favoritePage";
+
+  const FavoritePage({super.key});
   @override
   State<FavoritePage> createState() => _FavoritePageState();
 }
@@ -34,25 +37,31 @@ class _FavoritePageState extends State<FavoritePage> {
         }
       },
       child: Scaffold(
-        backgroundColor: Color(0xffF5F5F5),
+        backgroundColor: const Color(0xffF5F5F5),
         appBar: AppBar(
-          title: const TextFrave(
-              text: 'Favorites',
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.w500),
           centerTitle: true,
-          backgroundColor: Color(0xfff2f2f2),
-          elevation: 0,
-          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          elevation: 0.5,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            ), // icône à utiliser
+            onPressed: () => Navigator.of(context)
+                .pushAndRemoveUntil(routeSlide(page: Home()), (_) => false),
+          ),
+          title: const Text(
+            "Favorites",
+            style: TextStyle(color: Colors.black),
+          ),
         ),
         body: Stack(
           children: [
             FutureBuilder<List<ListProducts>>(
                 future: productServices.allFavoriteProducts(),
                 builder: (context, snapshot) => !snapshot.hasData
-                    ? Column(
-                        children: const [
+                    ? const Column(
+                        children: [
                           ShimmerFrave(),
                           SizedBox(height: 10.0),
                           ShimmerFrave(),
@@ -63,10 +72,10 @@ class _FavoritePageState extends State<FavoritePage> {
                     : ListFavoriteProduct(products: snapshot.data!)),
             Positioned(
               bottom: 0,
-              child: Container(
+              child: SizedBox(
                   width: size.width,
-                  child: Align(
-                    child: const NavigBar(selectedMenu: MenuState.favorites),
+                  child: const Align(
+                    child: NavigBar(selectedMenu: MenuState.favorites),
                   )),
             ),
           ],

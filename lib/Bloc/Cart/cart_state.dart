@@ -21,7 +21,7 @@ abstract class CartState {
 
 class CartInitial extends CartState {
 
-  CartInitial():super(cardActive: false);
+  const CartInitial():super(cardActive: false);
 }
 
 class LoadingPaymentState extends CartState {}
@@ -31,12 +31,12 @@ class SuccessPaymentState extends CartState {}
 class FailurePaymentState extends CartState {
   final String err;
 
-  FailurePaymentState(this.err);
+  const FailurePaymentState(this.err);
 }
 
 class SetActiveCardState extends CartState {
   final bool active;
   final CreditCardFrave creditCard;
 
-  SetActiveCardState({required this.active, required this.creditCard}): super(cardActive: active, creditCardFrave: creditCard);
+  const SetActiveCardState({required this.active, required this.creditCard}): super(cardActive: active, creditCardFrave: creditCard);
 }

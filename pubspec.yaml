@@ -42,7 +42,7 @@ dependencies:
   form_field_validator: ^1.1.0
   image_picker: ^0.8.7
   permission_handler: ^10.2.0
-  flutter_bloc: ^8.1.2
+  flutter_bloc: ^8.0.0
   timeago: ^3.4.0
   http: ^0.13.5
   cupertino_icons: ^1.0.2

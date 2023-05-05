@@ -1,20 +1,20 @@
-import 'package:flutter_ecommerce_app/Bloc/product/product_bloc.dart';
-import 'package:flutter_ecommerce_app/Helpers/helpers.dart';
-import 'package:flutter_ecommerce_app/ui/screens/Home/home.dart';
-import 'package:flutter_ecommerce_app/ui/themes/colors_frave.dart';
-import 'package:flutter_ecommerce_app/ui/components/shimmer_frave.dart';
-import 'package:flutter_ecommerce_app/ui/components/widgets.dart';
+import 'package:flutter_ecommerce_app/ui/components/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WithoutProductsCart extends StatelessWidget {
   const WithoutProductsCart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("You have not any product yet "),
+    return SizedBox(
+      height: getProportionateScreenHeight(420),
+      child: const Center(
+        child: Text("You have not any product yet "),
+      ),
     );
+  }
+}
+
 
     // return BlocBuilder<ProductBloc, ProductState>(
     //   builder: (_, state)
@@ -50,5 +50,4 @@ class WithoutProductsCart extends StatelessWidget {
     //       : const SizedBox()
     //   : const ShimmerFrave()
     // );
-  }
-}
+  

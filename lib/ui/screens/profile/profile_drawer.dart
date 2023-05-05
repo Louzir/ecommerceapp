@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/Bloc/General/general_bloc.dart';
 import 'package:flutter_ecommerce_app/Service/urls.dart';
 import 'package:flutter_ecommerce_app/ui/components/widgets.dart';
+import 'package:flutter_ecommerce_app/ui/screens/home/home.dart';
 import 'package:flutter_ecommerce_app/ui/screens/panier/panier_screen.dart';
 import 'package:flutter_ecommerce_app/Bloc/user/user_bloc.dart';
 import 'package:flutter_ecommerce_app/ui/screens/profile/information_page.dart';
@@ -192,6 +193,12 @@ class _Drawer_profileState extends State<Drawer_profile> {
               title: const Text('My Profile'),
               onTap: () =>
                   Navigator.pushNamed(context, InformationPage.routeName),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () =>
+                  Navigator.pushNamed(context, Home.routeName),
             ),
             ListTile(
               leading: const Icon(Icons.favorite),

@@ -7,8 +7,8 @@ class CircleFrave extends StatelessWidget {
   final Color color;
   final Widget child;
 
-  CircleFrave(
-      {this.radius = 60.0,
+  const CircleFrave(
+      {super.key, this.radius = 60.0,
       this.color = const Color(0xff006cf2),
       required this.child});
 

@@ -82,13 +82,13 @@ class _ListOrderDetails extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextFrave(
-                              text: 'Price: \$ ${orderDetails[i].price}',
-                              fontSize: 20,
+                              text: 'Price: ${orderDetails[i].price} TND',
+                              fontSize: 18,
                             ),
                             const SizedBox(height: 5.0),
                             TextFrave(
                                 text: 'Quantity: ${orderDetails[i].quantity}',
-                                fontSize: 20),
+                                fontSize: 18),
                           ],
                         )
                       ],

@@ -11,7 +11,7 @@ void modalAddCartSuccess( BuildContext context, String image ){
         child: AlertDialog(
           backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          content: Container(
+          content: SizedBox(
             height: 130,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

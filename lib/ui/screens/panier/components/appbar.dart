@@ -6,11 +6,9 @@ import 'package:flutter_ecommerce_app/ui/screens/Home/home.dart';
 
 import '../../../components/widgets.dart';
 
-
 class Appbar extends StatelessWidget {
+  const Appbar({Key? key}) : super(key: key);
 
-const Appbar({Key? key}):super(key: key);
-  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,34 +18,42 @@ const Appbar({Key? key}):super(key: key);
         children: [
           Row(
             children: [
-              CircleAvatar(
-                backgroundColor: Color(0xffF5F5F5),
-                radius: 24,
-                child: InkWell(
-                  onTap: () => Navigator.of(context).pushAndRemoveUntil(routeSlide(page: Home()), (_) => false),
-                  child: const Icon(Icons.arrow_back_ios_rounded, color: Colors.black )
-                ),
+              IconButton(
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.black,
+                ), // icône à utiliser
+                onPressed: () => Navigator.of(context)
+                    .pushAndRemoveUntil(routeSlide(page: Home()), (_) => false),
               ),
-              const SizedBox(width: 20.0),
-              Container(
-                child: const TextFrave(text: 'My Cart', fontSize: 24, fontWeight: FontWeight.w600 )
+              const SizedBox(width: 110.0),
+              Column(
+                children: [
+                  const TextFrave(
+                      text: 'My Cart',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600),
+                  const SizedBox(height: 6),
+                  BlocBuilder<ProductBloc, ProductState>(
+                      builder: (_, state) => state.products != null
+                          ? TextFrave(
+                              text: '${state.products!.length} items',
+                              fontSize: 12,
+                              color: Colors.black54)
+                          : const TextFrave(
+                              text: '0 items',
+                              fontSize: 12,
+                              color: Colors.black54)),
+                ],
               ),
             ],
-          ),
-          
-          Container(
-            child: BlocBuilder<ProductBloc, ProductState>(
-              builder: (_, state) 
-              => state.products != null
-              ? TextFrave(text: '${state.products!.length} items', fontSize: 19, color: Colors.black54 )
-              : const TextFrave(text: '0 items', fontSize: 19, color: Colors.black54 )
-            )
           ),
         ],
       ),
     );
   }
 }
+
 
 
 

@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorageFrave {
 
-  final secureStorage = FlutterSecureStorage();
+  final secureStorage = const FlutterSecureStorage();
 
 
   Future<void> persistenToken( String token ) async {

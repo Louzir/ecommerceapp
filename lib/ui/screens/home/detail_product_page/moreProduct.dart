@@ -1,7 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ecommerce_app/Bloc/Product/product_bloc.dart';
 import 'package:flutter_ecommerce_app/Models/Response/response_products_home.dart';
 import 'package:flutter_ecommerce_app/Service/product_services.dart';
 import 'package:flutter_ecommerce_app/Service/urls.dart';
@@ -14,8 +14,6 @@ class MoreProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productBloc = BlocProvider.of<ProductBloc>(context);
-
     return FutureBuilder<List<ListProducts>>(
       future: productServices.listProductsHome(),
       builder: (context, snapshot) {
@@ -56,26 +54,24 @@ class MoreProduct extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                child: Hero(
-                                  tag: product.uidProduct.toString(),
-                                  child: Image.network(
-                                    URLS.baseUrl + product.picture,
-                                    height: 113,
-                                  ),
+                              Hero(
+                                tag: product.uidProduct.toString(),
+                                child: Image.network(
+                                  URLS.baseUrl + product.picture,
+                                  height: 113,
                                 ),
                               ),
                               TextFrave(
                                 text: product.nameProduct,
                                 fontSize: 14,
                                 overflow: TextOverflow.ellipsis,
-                                color: Color(0xFF595959),
+                                color: const Color(0xFF595959),
                               ),
                               TextFrave(
-                                text: ' ${product.price} \TND',
+                                text: ' ${product.price} TND',
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF222D61),
+                                color: const Color(0xFF222D61),
                               ),
                               const SizedBox(
                                 height: 20,

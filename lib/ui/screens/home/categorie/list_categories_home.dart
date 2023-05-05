@@ -5,18 +5,17 @@ import 'package:flutter_ecommerce_app/Service/product_services.dart';
 import 'package:flutter_ecommerce_app/Service/urls.dart';
 import 'package:flutter_ecommerce_app/ui/components/widgets.dart';
 import 'package:flutter_ecommerce_app/ui/screens/home/categorie/product_for_category_page.dart';
-import 'package:flutter_ecommerce_app/ui/themes/colors_frave.dart';
 
 import 'package:flutter_svg/svg.dart';
 
 import '../../../components/shimmer_frave.dart';
 
 class ListCategoriesHome extends StatelessWidget {
-  ListCategoriesHome({Key? key, required}) : super(key: key);
+  const ListCategoriesHome({Key? key, required}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 76,
       width: MediaQuery.of(context).size.width,
       child: FutureBuilder<List<Categories>>(
@@ -25,11 +24,11 @@ class ListCategoriesHome extends StatelessWidget {
             return !snapshot.hasData
                 ? const ShimmerFrave()
                 : ListView.builder(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) => Container(
-                      padding: EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       child: OutlinedButton(
                         onPressed: () {
                           Navigator.push(
@@ -46,12 +45,12 @@ class ListCategoriesHome extends StatelessWidget {
                           shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10))),
-                          side: BorderSide(color: Colors.black54),
+                          side: const BorderSide(color: Colors.black54),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
+                            SizedBox(
                               height: 40,
                               width: 40,
                               child: SvgPicture.network(

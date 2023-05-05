@@ -8,7 +8,7 @@ part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc() : super(CartInitial()) {
+  CartBloc() : super(const CartInitial()) {
     on<OnSelectCardEvent>(_selectCard);
     on<OnMakePaymentEvent>(_makePayment);
   }

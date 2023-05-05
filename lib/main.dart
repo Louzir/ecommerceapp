@@ -11,9 +11,11 @@ import 'Bloc/Product/product_bloc.dart';
 import 'ui/screens/splash_screen/demarrage.dart';
 import 'package:flutter_ecommerce_app/ui/components/size_config.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
