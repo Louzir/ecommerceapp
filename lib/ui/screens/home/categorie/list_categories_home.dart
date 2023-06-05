@@ -10,6 +10,19 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../components/shimmer_frave.dart';
 
+List<Color> imageColors = [
+  Colors.redAccent,
+  Colors.blue,
+  Colors.green,
+  Colors.purple,
+  Colors.blueGrey,
+  Colors.redAccent,
+  Colors.blue,
+  Colors.green,
+  Colors.yellowAccent,
+  // Ajoutez plus de couleurs ici pour chaque image
+];
+
 class ListCategoriesHome extends StatelessWidget {
   const ListCategoriesHome({Key? key, required}) : super(key: key);
 
@@ -44,7 +57,7 @@ class ListCategoriesHome extends StatelessWidget {
                         style: OutlinedButton.styleFrom(
                           shape: const RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
+                                  BorderRadius.all(Radius.circular(15))),
                           side: const BorderSide(color: Colors.black54),
                         ),
                         child: Column(
@@ -53,15 +66,24 @@ class ListCategoriesHome extends StatelessWidget {
                             SizedBox(
                               height: 40,
                               width: 40,
-                              child: SvgPicture.network(
+                              child: ColorFiltered(
+                                colorFilter: ColorFilter.mode(
+                                  imageColors[
+                                      index], // Couleur spécifique pour cette image
+                                  BlendMode.srcIn,
+                                ),
+                                child: SvgPicture.network(
                                   URLS.baseUrl + snapshot.data![index].picture,
-                                  height: 120),
+                                  height: 120,
+                                ),
+                              ),
                             ),
                             TextFrave(
-                                text: snapshot.data![index].category,
-                                fontSize: 17,
-                                overflow: TextOverflow.ellipsis,
-                                color: Colors.black54),
+                              text: snapshot.data![index].category,
+                              fontSize: 17,
+                              overflow: TextOverflow.ellipsis,
+                              color: Colors.black54,
+                            ),
                           ],
                         ),
                       ),

@@ -1,6 +1,8 @@
 import 'package:flutter_ecommerce_app/ui/components/size_config.dart';
 import 'package:flutter/material.dart';
 
+import '../../Home/home.dart';
+
 class WithoutProductsCart extends StatelessWidget {
   const WithoutProductsCart({Key? key}) : super(key: key);
 
@@ -8,8 +10,36 @@ class WithoutProductsCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: getProportionateScreenHeight(420),
-      child: const Center(
-        child: Text("You have not any product yet "),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "You have not any product yet! ",
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            SizedBox(
+              width: getProportionateScreenWidth(200),
+              child: OutlinedButton(
+                style: ButtonStyle(
+                  side: MaterialStateProperty.all(const BorderSide(
+                    color: Colors.blue,
+                    width: 1.5,
+                  )),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                ),
+                onPressed: () => Navigator.pushNamed(context, Home.routeName),
+                child: const Text('Shop Now'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

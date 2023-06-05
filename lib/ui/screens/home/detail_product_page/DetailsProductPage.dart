@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/Bloc/Product/product_bloc.dart';
 import 'package:flutter_ecommerce_app/Helpers/helpers.dart';
+// import 'package:flutter_ecommerce_app/Models/product.dart';
 import 'package:flutter_ecommerce_app/Models/product.dart';
 import 'package:flutter_ecommerce_app/Models/Response/response_products_home.dart';
 import 'package:flutter_ecommerce_app/ui/components/cover_product.dart';
@@ -177,16 +178,17 @@ class _DetailsProductPageState extends State<DetailsProductPage> {
                               fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.w500),
-                          onPressed: () {                           
+                          onPressed: () {
                             final productSelect = ProductCart(
-                                uidProduct: widget.product.uidProduct.toString(), 
-                                image: widget.product.picture, 
-                                name: widget.product.nameProduct, 
+                                uidProduct:
+                                    widget.product.uidProduct.toString(),
+                                image: widget.product.picture,
+                                name: widget.product.nameProduct,
                                 price: widget.product.price.toDouble(),
-                                amount: 1
-                            );
-    
-                            productBloc.add( OnAddProductToCartEvent( productSelect ));    
+                                amount: 1);
+
+                            productBloc
+                                .add(OnAddProductToCartEvent(productSelect));
                           },
                         ),
                       )

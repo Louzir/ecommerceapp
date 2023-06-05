@@ -23,35 +23,23 @@ class Screen4State extends State<Screen4> {
     return Scaffold(
       bottomNavigationBar: const NavigBar(selectedMenu: MenuState.store),
       appBar: AppBar(
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(0.0),
-          child: SizedBox(
-            height: 40,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                const Center(
-                  child: Text(
-                    " Trouvez un magasin proche",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ),
-                Container()
-              ],
-            ),
-          ),
+        elevation: 0.5,
+        centerTitle: true,
+        title: const Text(
+          'Find a nearby store',
+          style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.white,
-        elevation: 0,
+        //iconTheme: const IconThemeData(color: Colors.black),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ), // icône à utiliser
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -65,7 +53,7 @@ class Screen4State extends State<Screen4> {
                   child: TextField(
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(11),
-                      hintText: "Recherche...",
+                      hintText: "Research...",
                       hintStyle: const TextStyle(fontSize: 12),
                       filled: true,
                       fillColor: Colors.white,
@@ -117,14 +105,14 @@ class Screen4State extends State<Screen4> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "Nom de magazin 1",
+                          "Louzir store",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 15.0,
                           ),
                         ),
                         Text(
-                          "Nom de magazin 1, Tunis Km 128\n4000 Sousse",
+                          "louzir store, Jemmel \n5020 Monastir",
                           style: TextStyle(
                             color: Colors.grey[500],
                           ),
@@ -135,7 +123,7 @@ class Screen4State extends State<Screen4> {
                             Row(
                               children: [
                                 Text(
-                                  "Horaire",
+                                  "Time",
                                   style: TextStyle(
                                     color: Colors.blue[500],
                                   ),
@@ -158,7 +146,7 @@ class Screen4State extends State<Screen4> {
                               ],
                             ),
                             Text(
-                              "100 Km",
+                              "37 Km",
                               style: TextStyle(
                                 color: Colors.blue[500],
                               ),
@@ -202,14 +190,14 @@ class Screen4State extends State<Screen4> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "Nom de magazin 1",
+                          "Charrada store",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 15.0,
                           ),
                         ),
                         Text(
-                          "Nom de magazin 1, Tunis Km 128\n4000 Sousse",
+                          "Charrada store, Jemmel \n5020 Monastir",
                           style: TextStyle(
                             color: Colors.grey[500],
                           ),
@@ -220,7 +208,7 @@ class Screen4State extends State<Screen4> {
                             Row(
                               children: [
                                 Text(
-                                  "Horaire",
+                                  "Time",
                                   style: TextStyle(
                                     color: Colors.blue[500],
                                   ),
@@ -243,7 +231,7 @@ class Screen4State extends State<Screen4> {
                               ],
                             ),
                             Text(
-                              "100 Km",
+                              "40 Km",
                               style: TextStyle(
                                 color: Colors.blue[500],
                               ),
@@ -287,14 +275,14 @@ class Screen4State extends State<Screen4> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "Nom de magazin 1",
+                          "Borgiphone",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 15.0,
                           ),
                         ),
                         Text(
-                          "Nom de magazin 1, Tunis Km 128\n4000 Sousse",
+                          "BorgiPhone, Khzema \n4000 Sousse",
                           style: TextStyle(
                             color: Colors.grey[500],
                           ),
@@ -305,7 +293,7 @@ class Screen4State extends State<Screen4> {
                             Row(
                               children: [
                                 Text(
-                                  "Horaire",
+                                  "Time",
                                   style: TextStyle(
                                     color: Colors.blue[500],
                                   ),
@@ -328,7 +316,7 @@ class Screen4State extends State<Screen4> {
                               ],
                             ),
                             Text(
-                              "100 Km",
+                              "57 Km",
                               style: TextStyle(
                                 color: Colors.blue[500],
                               ),
@@ -372,14 +360,14 @@ class Screen4State extends State<Screen4> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "Nom de magazin 1",
+                          "Peak",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 15.0,
                           ),
                         ),
                         Text(
-                          "Nom de magazin 1, Tunis Km 128\n4000 Sousse",
+                          "Peak, Mall of Sousse\n4000 Sousse",
                           style: TextStyle(
                             color: Colors.grey[500],
                           ),
@@ -390,7 +378,7 @@ class Screen4State extends State<Screen4> {
                             Row(
                               children: [
                                 Text(
-                                  "Horaire",
+                                  "Time",
                                   style: TextStyle(
                                     color: Colors.blue[500],
                                   ),
@@ -413,7 +401,7 @@ class Screen4State extends State<Screen4> {
                               ],
                             ),
                             Text(
-                              "100 Km",
+                              "64 Km",
                               style: TextStyle(
                                 color: Colors.blue[500],
                               ),
@@ -446,26 +434,103 @@ class Screen4State extends State<Screen4> {
                       ],
                     ),
                   ),
+                  // const SizedBox(height: 15),
+                  // Container(
+                  //   width: 400,
+                  //   height: showTimeRange3
+                  //       ? 226
+                  //       : 113, // update the height based on whether the widget is expanded or not
+                  //   padding: const EdgeInsets.only(left: 60, right: 60),
+                  //   child: Column(
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       const Text(
+                  //         "City watch",
+                  //         style: TextStyle(
+                  //           fontWeight: FontWeight.bold,
+                  //           fontSize: 15.0,
+                  //         ),
+                  //       ),
+                  //       Text(
+                  //         "City watch, Mall of Sousse \n4000 Sousse",
+                  //         style: TextStyle(
+                  //           color: Colors.grey[500],
+                  //         ),
+                  //       ),
+                  //       Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //         children: <Widget>[
+                  //           Row(
+                  //             children: [
+                  //               Text(
+                  //                 "Time",
+                  //                 style: TextStyle(
+                  //                   color: Colors.blue[500],
+                  //                 ),
+                  //               ),
+                  //               IconButton(
+                  //                 icon: Padding(
+                  //                   padding: const EdgeInsets.only(right: 10),
+                  //                   child: Icon(showTimeRange3
+                  //                       ? Icons.keyboard_arrow_up
+                  //                       : Icons
+                  //                           .keyboard_arrow_down), // update the icon based on whether the widget is expanded or not
+                  //                 ),
+                  //                 onPressed: () {
+                  //                   setState(() {
+                  //                     showTimeRange3 =
+                  //                         !showTimeRange3; // toggle the _isExpanded boolean variable
+                  //                   });
+                  //                 },
+                  //               ),
+                  //             ],
+                  //           ),
+                  //           Text(
+                  //             "64 Km",
+                  //             style: TextStyle(
+                  //               color: Colors.blue[500],
+                  //             ),
+                  //           ),
+                  //           // ),
+                  //         ],
+                  //       ),
+                  //       if (showTimeRange3) // show the expanded content if _isExpanded is true
+                  //         Padding(
+                  //           padding: const EdgeInsets.only(left: 30, top: 10),
+                  //           child: Column(
+                  //             crossAxisAlignment: CrossAxisAlignment.start,
+                  //             children: [
+                  //               Text(
+                  //                 "9:00 am - 12:00 pm",
+                  //                 style: TextStyle(
+                  //                   color: Colors.grey[500],
+                  //                 ),
+                  //               ),
+                  //               const SizedBox(height: 10),
+                  //               Text(
+                  //                 "1:00 pm - 6:00 pm",
+                  //                 style: TextStyle(
+                  //                   color: Colors.grey[500],
+                  //                 ),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //     ],
+                  //   ),
+                  // ),
                   SizedBox(
                     height: getProportionateScreenHeight(20),
                   ),
-                  Container(
-                    height: 50,
-                    width: double.infinity,
-                    padding: const EdgeInsets.only(left: 20, right: 20),
+                  SizedBox(
+                    width: getProportionateScreenWidth(300),
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.redAccent),
-                      ),
-                      child: const Text(
-                        "Choisir ce magasin",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
-                      ),
-                      onPressed: () {
-                        // Action lorsque le bouton est cliqué
-                      },
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.redAccent)),
+                      //color: Colors.red,
+                      child: const Text('Choose this store'),
+                      onPressed: () {},
                     ),
                   ),
                 ],

@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 class ProductCart {
   final String uidProduct;
   final String image;
@@ -16,12 +14,6 @@ class ProductCart {
   });
 
   Map<String, dynamic> toJson() {
-    return {
-      'uidProduct': uidProduct,
-      'price': price,
-      'amount': amount,
-      'image': image,
-      'name': name
-    };
+    return {'uidProduct': uidProduct, 'price': price, 'amount': amount};
   }
 }

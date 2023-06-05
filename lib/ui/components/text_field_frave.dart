@@ -1,7 +1,6 @@
 part of 'widgets.dart';
 
 class TextFormFrave extends StatelessWidget {
-
   final TextEditingController controller;
   final String? hintText;
   final bool isPassword;
@@ -18,28 +17,29 @@ class TextFormFrave extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.validator,
   }) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      style: GoogleFonts.getFont('Roboto', fontSize: 18),
+      style: GoogleFonts.getFont('Poppins', fontSize: 14),
       cursorColor: ColorsFrave.secundaryColorFrave,
       obscureText: isPassword,
       keyboardType: keyboardType,
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15.0),
-        filled: true,
-        fillColor: const Color(0xfff5f5f5),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), borderSide: const BorderSide(color: Color(0xffF5F5F5))),
-        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0), borderSide: const BorderSide(color: Color(0xffF5F5F5))),
-        hintText: hintText,
-        prefixIcon: prefixIcon
-      ),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 15, vertical: 15.0),
+          filled: true,
+          fillColor: const Color(0xfff5f5f5),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: const BorderSide(color: Color(0xffF5F5F5))),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: const BorderSide(color: Color(0xffF5F5F5))),
+          hintText: hintText,
+          prefixIcon: prefixIcon),
       validator: validator,
     );
   }
-
-
-
 }

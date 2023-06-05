@@ -41,19 +41,19 @@ void modalSuccess(BuildContext context, String text,
                         const Icon(Icons.check, color: Colors.white, size: 38),
                   )),
               const SizedBox(height: 35.0),
-              TextFrave(text: text, fontSize: 17, fontWeight: FontWeight.w400),
+              TextFrave(text: text, fontSize: 15, fontWeight: FontWeight.w400),
               const SizedBox(height: 20.0),
               InkWell(
                 onTap: onPressed,
                 child: Container(
                   alignment: Alignment.center,
-                  height: 35,
+                  height: 30,
                   width: 150,
                   decoration: BoxDecoration(
                       color: Colors.redAccent,
                       borderRadius: BorderRadius.circular(5.0)),
                   child: const TextFrave(
-                      text: 'Done', color: Colors.white, fontSize: 17),
+                      text: 'Done', color: Colors.white, fontSize: 14),
                 ),
               )
             ],

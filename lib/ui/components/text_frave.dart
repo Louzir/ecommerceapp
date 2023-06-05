@@ -13,7 +13,7 @@ class TextFrave extends StatelessWidget {
   const TextFrave({
     Key? key,
     required this.text,
-    this.fontSize = 18,
+    this.fontSize = 14,
     this.fontWeight = FontWeight.normal,
     this.color = Colors.black,
     this.maxLines = 1,
@@ -26,7 +26,7 @@ class TextFrave extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: GoogleFonts.getFont('Roboto',
+      style: GoogleFonts.getFont('Poppins',
           fontSize: fontSize,
           fontWeight: fontWeight,
           color: color,

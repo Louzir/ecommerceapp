@@ -1,9 +1,14 @@
+import 'package:flutter_ecommerce_app/Service/urls.dart';
 import 'package:flutter_ecommerce_app/ui/components/shimmer_frave.dart';
 import 'package:flutter_ecommerce_app/ui/components/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/Bloc/user/user_bloc.dart';
 import 'package:flutter_ecommerce_app/Helpers/helpers.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+import '../../themes/colors_frave.dart';
 
 class InformationPage extends StatefulWidget {
   const InformationPage({super.key});
@@ -92,7 +97,7 @@ class _InformationPageState extends State<InformationPage> {
                 child: const TextFrave(
                   text: 'Save',
                   color: Colors.redAccent,
-                  fontSize: 18,
+                  fontSize: 16,
                 ))
           ],
         ),
@@ -104,7 +109,85 @@ class _InformationPageState extends State<InformationPage> {
             padding:
                 const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
             children: [
-              const TextFrave(text: 'Account data', fontSize: 18),
+              BlocBuilder<UserBloc, UserState>(
+                  buildWhen: (previous, current) => previous != current,
+                  builder: (context, state) => state.user != null
+                      ? SizedBox(
+                          child: state.user != null && state.user?.image == ''
+                              ? GestureDetector(
+                                  onTap: () => modalSelectPicture(
+                                        context: context,
+                                        onPressedImage: () async {
+                                          Navigator.pop(context);
+                                          AccessPermission()
+                                              .permissionAccessGalleryOrCameraForProfile(
+                                                  await Permission.storage
+                                                      .request(),
+                                                  context,
+                                                  ImageSource.gallery);
+                                        },
+                                        onPressedPhoto: () async {
+                                          Navigator.pop(context);
+                                          AccessPermission()
+                                              .permissionAccessGalleryOrCameraForProfile(
+                                                  await Permission.camera
+                                                      .request(),
+                                                  context,
+                                                  ImageSource.camera);
+                                        },
+                                      ),
+                                  child: CircleAvatar(
+                                    radius: 50,
+                                    backgroundColor:
+                                        ColorsFrave.primaryColorFrave,
+                                    child: TextFrave(
+                                        text: state.user!.users
+                                            .substring(0, 2)
+                                            .toUpperCase(),
+                                        fontSize: 35,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ))
+                              : GestureDetector(
+                                  onTap: () => modalSelectPicture(
+                                    context: context,
+                                    onPressedImage: () async {
+                                      Navigator.pop(context);
+                                      AccessPermission()
+                                          .permissionAccessGalleryOrCameraForProfile(
+                                              await Permission.storage
+                                                  .request(),
+                                              context,
+                                              ImageSource.gallery);
+                                    },
+                                    onPressedPhoto: () async {
+                                      Navigator.pop(context);
+                                      AccessPermission()
+                                          .permissionAccessGalleryOrCameraForProfile(
+                                              await Permission.camera.request(),
+                                              context,
+                                              ImageSource.camera);
+                                    },
+                                  ),
+                                  child: Container(
+                                    height: 100,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                            color: Colors.redAccent,
+                                            width: 1.5),
+                                        image: DecorationImage(
+                                            // fit: BoxFit.cover,
+                                            image: NetworkImage(URLS.baseUrl +
+                                                state.user!.image))),
+                                  ),
+                                ))
+                      : const ShimmerFrave()),
+              const SizedBox(
+                height: 20,
+              ),
+              const TextFrave(text: 'Account data', fontSize: 16),
               const SizedBox(height: 10.0),
               BlocBuilder<UserBloc, UserState>(
                   buildWhen: (previous, current) => previous != current,
@@ -112,7 +195,7 @@ class _InformationPageState extends State<InformationPage> {
                       ? Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),
-                          height: 80,
+                          height: 90,
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                               color: const Color(0xff4C98EE).withOpacity(.1),
@@ -125,10 +208,10 @@ class _InformationPageState extends State<InformationPage> {
                                 children: [
                                   const TextFrave(
                                       text: 'User',
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w500),
                                   TextFrave(
-                                      text: state.user!.users, fontSize: 18),
+                                      text: state.user!.users, fontSize: 16),
                                 ],
                               ),
                               const SizedBox(height: 15.0),
@@ -138,10 +221,10 @@ class _InformationPageState extends State<InformationPage> {
                                 children: [
                                   const TextFrave(
                                       text: 'Email',
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w500),
                                   TextFrave(
-                                      text: state.user!.email, fontSize: 18),
+                                      text: state.user!.email, fontSize: 16),
                                 ],
                               ),
                             ],
@@ -149,7 +232,7 @@ class _InformationPageState extends State<InformationPage> {
                         )
                       : const ShimmerFrave()),
               const SizedBox(height: 30.0),
-              const TextFrave(text: 'Personal Information', fontSize: 18),
+              const TextFrave(text: 'Personal Information', fontSize: 16),
               const SizedBox(height: 10.0),
               TextFormFrave(
                 controller: _firstnameController,

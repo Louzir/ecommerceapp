@@ -37,7 +37,7 @@ class _Info_livraisonState extends State<Info_livraison> {
           },
         ),
         title: const Text(
-          "   Information de livraison",
+          "   Delivery information",
           style: TextStyle(color: Colors.black),
         ));
   }

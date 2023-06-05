@@ -22,7 +22,8 @@ class ListFavoriteProduct extends StatelessWidget {
             child: Text('You don\'t have any favorite products yet !'))
         : GridView.builder(
             physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 90),
+            padding: const EdgeInsets.only(
+                left: 15.0, right: 15.0, bottom: 90, top: 15),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 25,

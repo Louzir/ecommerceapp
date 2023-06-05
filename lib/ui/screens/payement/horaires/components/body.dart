@@ -53,7 +53,7 @@ class _MyScreenState extends State<MyScreen> {
               children: [
                 Expanded(
                   child: Text(
-                    'Date choisie : ${DateFormat('dd/MM/yyyy').format(_selectedDate)}',
+                    'Chosen date : ${DateFormat('dd/MM/yyyy').format(_selectedDate)}',
                     style: const TextStyle(
                       fontSize: 18,
                       fontStyle: FontStyle.normal,
@@ -150,7 +150,7 @@ class _MyScreenState extends State<MyScreen> {
                       const SnackBar(
                         backgroundColor: Colors.transparent,
                         content: Text(
-                          'Veuillez choisir une heure.',
+                          'Please choose a time.',
                           style: TextStyle(color: Colors.black),
                         ),
                       ),
@@ -161,14 +161,14 @@ class _MyScreenState extends State<MyScreen> {
                     SnackBar(
                       backgroundColor: Colors.transparent,
                       content: Text(
-                        'Date et heure choisies : ${DateFormat('dd/MM/yyyy').format(_selectedDate)} ${_selectedTime!.format(context)}',
+                        'Selected date and time: ${DateFormat('dd/MM/yyyy').format(_selectedDate)} at ${_selectedTime!.format(context)}',
                         style: const TextStyle(color: Colors.black),
                       ),
                     ),
                   );
                   Navigator.pushNamed(context, PaymentSuccessPage.routeName);
                 },
-                child: const Text('Valider le choix'),
+                child: const Text('Validate the choice'),
               ),
             ),
           ],

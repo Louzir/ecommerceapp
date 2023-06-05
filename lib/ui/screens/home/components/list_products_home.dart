@@ -8,9 +8,14 @@ import 'package:flutter_ecommerce_app/ui/components/shimmer_frave.dart';
 import 'package:flutter_ecommerce_app/ui/components/widgets.dart';
 import 'package:flutter_ecommerce_app/ui/screens/home/detail_product_page/DetailsProductPage.dart';
 
-class ListProductsForHome extends StatelessWidget {
-   const ListProductsForHome({Key? key}) : super(key: key);
+class ListProductsForHome extends StatefulWidget {
+  const ListProductsForHome({Key? key}) : super(key: key);
 
+  @override
+  State<ListProductsForHome> createState() => _ListProductsForHomeState();
+}
+
+class _ListProductsForHomeState extends State<ListProductsForHome> {
   @override
   Widget build(BuildContext context) {
     final productBloc = BlocProvider.of<ProductBloc>(context);
@@ -76,7 +81,7 @@ class ListProductsForHome extends StatelessWidget {
                             ),
                             TextFrave(
                               text: ' ${snapshot.data![i].price} TND',
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                               color: const Color(
                                 0xFF222D61,
@@ -127,9 +132,7 @@ class ListProductsForHome extends StatelessWidget {
                                                 .data![i].uidProduct
                                                 .toString())),
                                     child: const Icon(
-                                        Icons.favorite_outline_rounded)
-                           )
-                         ),
+                                        Icons.favorite_outline_rounded))),
                       ],
                     ),
                   ),

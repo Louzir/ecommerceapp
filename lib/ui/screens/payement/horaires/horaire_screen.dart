@@ -18,7 +18,7 @@ class _Horaires_screenState extends State<Horaires_screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: builAppBar(context),
-      body:  const MyScreen(),
+      body: const MyScreen(),
       bottomNavigationBar: const NavigBar(selectedMenu: MenuState.panier),
     );
   }
@@ -38,7 +38,7 @@ class _Horaires_screenState extends State<Horaires_screen> {
           },
         ),
         title: const Text(
-          "   Horaire souhaitée",
+          "   Preferred schedule",
           style: TextStyle(color: Colors.black),
         ));
   }

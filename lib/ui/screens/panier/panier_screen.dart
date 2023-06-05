@@ -60,7 +60,7 @@ class PanierScreen extends StatelessWidget {
                         BlocBuilder<ProductBloc, ProductState>(
                           builder: (context, state) => TextFrave(
                               text: '${state.total.toStringAsFixed(2)} TND',
-                              fontSize: 24,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: const Color(0xff0C6CF2)),
                         )
@@ -71,9 +71,10 @@ class PanierScreen extends StatelessWidget {
                   SizedBox(
                     width: getProportionateScreenWidth(190),
                     child: DefaultButton(
-                      text: "Cammander",
+                      text: "Checkout",
                       press: () {
-                        if (productBloc.product.isNotEmpty) {
+                        //isnotEmpty
+                        if (productBloc.product.isEmpty) {
                           Navigator.pushNamed(
                               context, Info_livraison.routeName);
                         }
@@ -102,17 +103,19 @@ class _ListProductsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productBloc = BlocProvider.of<ProductBloc>(context);
-
-    return SafeArea(
-      child: Column(
-        children: [
-          const SizedBox(height: 15.0),
-          const Appbar(),
-          const SizedBox(height: 20.0),
-          productBloc.product.isEmpty
-              ? const WithoutProductsCart()
-              : const DetailsProductsCart()
-        ],
+    return BlocProvider<ProductBloc>(
+      create: (context) => ProductBloc(),
+      child: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(height: 15.0),
+            const Appbar(),
+            const SizedBox(height: 20.0),
+            productBloc.product.isEmpty
+                ? const WithoutProductsCart()
+                : const DetailsProductsCart()
+          ],
+        ),
       ),
     );
   }

@@ -9,6 +9,7 @@ import 'package:flutter_ecommerce_app/ui/components/size_config.dart';
 import 'package:flutter_ecommerce_app/ui/components/widgets.dart';
 import 'package:flutter_ecommerce_app/ui/screens/home/slider/slider.dart';
 import 'package:flutter_ecommerce_app/ui/screens/panier/panier_screen.dart';
+import 'package:flutter_ecommerce_app/ui/screens/profile/information_page.dart';
 import 'package:flutter_ecommerce_app/ui/screens/profile/profile_drawer.dart';
 import 'package:flutter_ecommerce_app/ui/themes/colors_frave.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -27,6 +28,16 @@ class Home extends StatefulWidget {
   const Home({super.key});
   @override
   State<Home> createState() => Home4State();
+}
+
+String _getImagePath(int index) {
+  List<String> imagePaths = [
+    'assets/services/sell.png', // Chemin de la première image
+    'assets/services/B2B.png', // Chemin de la deuxième image
+    'assets/services/food.png', // Chemin de la troisième image
+    'assets/services/shipping.png', // Chemin de la quatrième image
+  ];
+  return imagePaths[index];
 }
 
 class Home4State extends State<Home> {
@@ -191,7 +202,7 @@ class HomePage4State extends State<HomePage> {
                                   ? Row(
                                       children: [
                                         Text(
-                                          "Bonjour ",
+                                          "Welcome ",
                                           style: Theme.of(context)
                                               .textTheme
                                               .headlineLarge
@@ -218,7 +229,7 @@ class HomePage4State extends State<HomePage> {
                             ),
                             const SizedBox(height: 5),
                             const Text(
-                              "Nous vous proposons des recommandations",
+                              "We offer recommendations",
                               style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w400,
@@ -229,36 +240,41 @@ class HomePage4State extends State<HomePage> {
                         ),
                       ),
                       SizedBox(
-                        width: getProportionateScreenWidth(25),
+                        width: getProportionateScreenWidth(135),
                       ),
                       FadeInLeft(
                         child: BlocBuilder<UserBloc, UserState>(
                             buildWhen: (previous, current) =>
                                 previous != current,
                             builder: (context, state) => state.user != null
-                                ? Row(
-                                    children: [
-                                      state.user!.image != ''
-                                          ? CircleAvatar(
-                                              radius: 25,
-                                              backgroundImage: NetworkImage(
-                                                  URLS.baseUrl +
-                                                      state.user!.image),
-                                            )
-                                          : CircleAvatar(
-                                              radius: 25,
-                                              backgroundColor:
-                                                  ColorsFrave.primaryColorFrave,
-                                              child: TextFrave(
-                                                text: state.user!.users
-                                                    .substring(0, 2)
-                                                    .toUpperCase(),
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white,
-                                              ),
+                                ? GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const InformationPage()),
+                                      );
+                                    },
+                                    child: state.user!.image != ''
+                                        ? CircleAvatar(
+                                            radius: 25,
+                                            backgroundImage: NetworkImage(
+                                                URLS.baseUrl +
+                                                    state.user!.image),
+                                          )
+                                        : CircleAvatar(
+                                            radius: 25,
+                                            backgroundColor:
+                                                ColorsFrave.primaryColorFrave,
+                                            child: TextFrave(
+                                              text: state.user!.users
+                                                  .substring(0, 2)
+                                                  .toUpperCase(),
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
                                             ),
-                                      const SizedBox(width: 5.0),
-                                    ],
+                                          ),
                                   )
                                 : const SizedBox()),
                       ),
@@ -270,7 +286,7 @@ class HomePage4State extends State<HomePage> {
               Padding(
                 padding: const EdgeInsets.only(top: 15.0, left: 10),
                 child: Text(
-                  "Catégories",
+                  "Categories",
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       fontWeight: FontWeight.w500,
                       color: Colors.purple,
@@ -287,39 +303,78 @@ class HomePage4State extends State<HomePage> {
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: SectionTitle(
-                  title: "Juste pour vous",
+                  title: "Just for you",
                   pressSeeAll: () {},
                 ),
               ),
               const ProductSlider(),
-              Padding(
-                padding: const EdgeInsets.only(top: 15.0, left: 10),
-                child: Text(
-                  "Product Name",
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
-                      fontSize: 18),
-                ),
+              const SizedBox(
+                height: 18,
+              ),
+              const Divider(
+                height: 1,
+                thickness: 1.5,
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 7.0, left: 10),
-                child: Text(
-                  "25.00 TND",
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontWeight: FontWeight.w500,
-                      color: Colors.purple,
-                      fontSize: 16),
+                padding: const EdgeInsets.only(top: 10.0, left: 10),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "discover our offers and services",
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                          fontSize: 18,
+                        ),
+                  ),
                 ),
               ),
+              const SizedBox(height: 15),
+              SizedBox(
+                height: 130,
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 4,
+                  itemBuilder: (context, index) => Container(
+                    width:
+                        100, // Ajustez la largeur des images selon vos besoins
+                    margin: const EdgeInsets.only(left: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 100,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black26, // Couleur du cadre
+                              width: 1, // Largeur du cadre
+                            ),
+                            borderRadius: BorderRadius.circular(
+                                5), // Bordure arrondie du cadre
+                            image: DecorationImage(
+                              image: AssetImage(
+                                _getImagePath(
+                                    index), // Méthode pour obtenir le chemin de l'image en fonction de l'index
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const Divider(
+                height: 1,
+                thickness: 1.5,
+              ),
               Padding(
-                padding: const EdgeInsets.only(top: 7.0, left: 10),
-                child: Text(
-                  "Lörem ipsum sorad Madeleine Engström. Du kan \nvara drabbad. Krofask nystartsjobb det vill säga.",
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey,
-                      fontSize: 15),
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: SectionTitle(
+                  title: "Our product",
+                  pressSeeAll: () {},
                 ),
               ),
               const ListProductsForHome(),

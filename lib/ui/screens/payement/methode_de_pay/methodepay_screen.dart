@@ -38,7 +38,7 @@ class _Methode_payState extends State<Methode_pay> {
           },
         ),
         title: const Text(
-          "   Méthode de payement",
+          "   Payment method",
           style: TextStyle(color: Colors.black),
         ));
   }

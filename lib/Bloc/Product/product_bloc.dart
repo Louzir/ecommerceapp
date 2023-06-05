@@ -6,8 +6,6 @@ import 'package:meta/meta.dart';
 
 import '../../Models/product.dart';
 
-
-
 part 'product_event.dart';
 part 'product_state.dart';
 
@@ -47,10 +45,10 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
   Future<void> _addProductToCart(
       OnAddProductToCartEvent event, Emitter<ProductState> emit) async {
-    final hasProduct = product.contains(event.product);
+    final hasProduct = product.contains(event.products);
 
     if (!hasProduct) {
-      product.add(event.product);
+      product.add(event.products);
 
       double sum = 0;
 
@@ -106,7 +104,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       emit(LoadingProductState());
 
       final data = await productServices.saveOrderBuyProductToDatabase(
-          'Ticket', event.amount, event.product);
+          'Ticket', event.amount, event.products);
 
       if (data.resp) {
         emit(SuccessProductState());

@@ -24,18 +24,18 @@ class StartHome extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                        height: 180,
+                        height: 250,
                         width: double.infinity,
                         decoration: const BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/logo.png')))),
-                    const SizedBox(height: 15.0),
-                    const TextFrave(
-                        text: 'E_Commerce',
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                                image: AssetImage('assets/logoV1.png')))),
                     const SizedBox(height: 10.0),
+                    // const TextFrave(
+                    //     text: 'E_Commerce',
+                    //     fontSize: 32,
+                    //     fontWeight: FontWeight.bold,
+                    //     color: Colors.white),
+                    // const SizedBox(height: 10.0),
                     const TextFrave(
                         text: 'All your products in your hands',
                         fontSize: 20,
@@ -56,7 +56,7 @@ class StartHome extends StatelessWidget {
                                 const Color(0xff1C2834))),
                         onPressed: () =>
                             Navigator.pushNamed(context, SignupPage.routeName),
-                        child: const Text(' Sign_UP'),
+                        child: const Text(' Sign Up'),
                       ),
                     ),
                     SizedBox(height: getProportionateScreenHeight(25)),

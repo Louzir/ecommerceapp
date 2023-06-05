@@ -27,6 +27,7 @@ class Screen3State extends State<Screen3> {
     });
   }
 
+  bool get canContinue => _image1Selected || _image2Selected;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +41,7 @@ class Screen3State extends State<Screen3> {
               borderRadius: BorderRadius.circular(5),
             ),
             child: const Text(
-              'Dites-nous comment vous l’aimeriez',
+              'Tell us how you would \nlike it',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
@@ -50,7 +51,7 @@ class Screen3State extends State<Screen3> {
           ),
           const SizedBox(
             child: Text(
-              'Merci de choisir le service qui \n vous convient',
+              'Please choose the service that \n suits you',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 16,
@@ -59,7 +60,7 @@ class Screen3State extends State<Screen3> {
             ),
           ),
           SizedBox(
-            height: getProportionateScreenHeight(65),
+            height: getProportionateScreenHeight(55),
           ),
           Expanded(
             child: Container(
@@ -151,7 +152,7 @@ class Screen3State extends State<Screen3> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'livraison à\n domicile',
+                        'home delivery',
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
@@ -159,7 +160,7 @@ class Screen3State extends State<Screen3> {
                       ),
                       SizedBox(width: 110),
                       Text(
-                        'Retrait en \n magasin',
+                        'Pick up \n    in store',
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
@@ -187,10 +188,12 @@ class Screen3State extends State<Screen3> {
                       backgroundColor:
                           MaterialStateProperty.all(Colors.redAccent),
                     ),
-                    onPressed: () {
-                      // Action à faire lorsque le bouton gauche est cliqué
-                    },
-                    child: const Text('Terminer'),
+                    onPressed: canContinue
+                        ? () {
+                            Navigator.pushNamed(context, Home.routeName);
+                          }
+                        : null,
+                    child: const Text('Done'),
                   ),
                 ),
                 const SizedBox(height: 15),
@@ -208,7 +211,7 @@ class Screen3State extends State<Screen3> {
                     ),
                     onPressed: () =>
                         Navigator.pushNamed(context, Home.routeName),
-                    child: const Text('Pas maintenant'),
+                    child: const Text('Not now'),
                   ),
                 ),
               ],

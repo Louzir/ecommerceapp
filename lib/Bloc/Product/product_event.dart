@@ -13,9 +13,9 @@ class OnAddOrDeleteProductFavoriteEvent extends ProductEvent{
 
 
 class OnAddProductToCartEvent extends ProductEvent {
-  final ProductCart product;
+  final ProductCart products;
 
-  OnAddProductToCartEvent(this.product);
+  OnAddProductToCartEvent(this.products);
 }
 
 
@@ -46,9 +46,9 @@ class OnClearProductsEvent extends ProductEvent {}
 
 class OnSaveProductsBuyToDatabaseEvent extends ProductEvent { 
   final String amount;
-  final List<ProductCart> product;
+  final List<ProductCart> products;
 
-  OnSaveProductsBuyToDatabaseEvent(this.amount, this.product);
+  OnSaveProductsBuyToDatabaseEvent(this.amount, this.products);
 }
 
 

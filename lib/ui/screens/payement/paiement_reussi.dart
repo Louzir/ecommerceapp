@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../../components/navigbar.dart';
 import '../../components/enums.dart';
+import '../../components/size_config.dart';
+import '../Home/home.dart';
 
 class PaymentSuccessPage extends StatelessWidget {
   const PaymentSuccessPage({super.key});
@@ -14,7 +15,7 @@ class PaymentSuccessPage extends StatelessWidget {
         elevation: 0.5,
         centerTitle: true,
         title: const Text(
-          'Confirmation de paiement',
+          'Payment confirmation',
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.white,
@@ -41,7 +42,7 @@ class PaymentSuccessPage extends StatelessWidget {
             ),*/
             const SizedBox(height: 20),
             const Text(
-              'Paiement réussi!',
+              'Payment successful!',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -49,7 +50,7 @@ class PaymentSuccessPage extends StatelessWidget {
             ),
             const SizedBox(height: 15),
             const Text(
-              'Votre paiement a été effectué avec succès.',
+              'Your payment has been made successfully.',
               style: TextStyle(
                 fontSize: 16,
               ),
@@ -60,7 +61,7 @@ class PaymentSuccessPage extends StatelessWidget {
                 //code
               },
               child: const Text(
-                'Voir les détails',
+                'See the details',
                 style: TextStyle(
                     fontSize: 15,
                     color: Colors.black87,
@@ -69,14 +70,29 @@ class PaymentSuccessPage extends StatelessWidget {
             ),
             const SizedBox(height: 60),
             SizedBox(
-              width: 300,
+              width: getProportionateScreenWidth(300),
               child: ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all(Colors.redAccent)),
                 //color: Colors.red,
-                child: const Text('Téléchager la facture'),
+                child: const Text('Download the invoice'),
                 onPressed: () {},
+              ),
+            ),
+            SizedBox(
+              width: getProportionateScreenWidth(300),
+              child: OutlinedButton(
+                style: ButtonStyle(
+                  side: MaterialStateProperty.all(const BorderSide(
+                    color: Colors.blue,
+                    width: 1.5,
+                  )),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                ),
+                onPressed: () => Navigator.pushNamed(context, Home.routeName),
+                child: const Text('Shop more'),
               ),
             ),
           ],

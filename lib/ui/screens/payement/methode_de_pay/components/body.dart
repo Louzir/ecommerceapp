@@ -1,8 +1,12 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/ui/components/size_config.dart';
 import 'package:flutter_ecommerce_app/ui/screens/payement/horaires/horaire_screen.dart';
+
+import '../../../../../Bloc/Product/product_bloc.dart';
+import '../../../../components/widgets.dart';
 
 class Meth_body extends StatefulWidget {
   const Meth_body({super.key});
@@ -27,20 +31,28 @@ class _Meth_bodyState extends State<Meth_body> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    "N° de commande",
+                    "Order number",
                     style: TextStyle(
                         color: Color.fromARGB(230, 65, 38, 100),
                         fontWeight: FontWeight.w600,
                         fontSize: 16),
                   ),
                   SizedBox(width: getProportionateScreenWidth(30)),
-                  const Text(
-                    "337.150 TND",
-                    style: TextStyle(
-                        color: Color.fromARGB(230, 65, 38, 100),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16),
-                  ),
+                  BlocBuilder<ProductBloc, ProductState>(
+                    builder: (context, state) => TextFrave(
+                      text: '${(state.total + 7).toStringAsFixed(2)} TND',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: const Color.fromARGB(230, 65, 38, 100),
+                    ),
+                  )
+                  // const Text(
+                  //   "337.150 TND",
+                  //   style: TextStyle(
+                  //       color: Color.fromARGB(230, 65, 38, 100),
+                  //       fontWeight: FontWeight.w600,
+                  //       fontSize: 16),
+                  // ),
                 ],
               ),
               SizedBox(height: getProportionateScreenHeight(6)),
@@ -56,7 +68,7 @@ class _Meth_bodyState extends State<Meth_body> {
                   ),
                   SizedBox(width: getProportionateScreenWidth(30)),
                   const Text(
-                    "inclue 7.00 TND",
+                    "included 7.00 TND",
                     style: TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.normal,
@@ -178,7 +190,7 @@ class _Meth_bodyState extends State<Meth_body> {
                     prefixIcon: Icon(Icons.credit_card),
                     hintText: 'XXXX XXXX XXXX XXXX',
                     hintStyle: TextStyle(color: Colors.grey),
-                    labelText: 'Numéro de la carte',
+                    labelText: 'Card number',
                   ),
                 ),
               ),
@@ -196,7 +208,7 @@ class _Meth_bodyState extends State<Meth_body> {
                     prefixIcon: Icon(Icons.person_2_outlined),
                     hintText: 'Foulan Ben Foulan',
                     hintStyle: TextStyle(color: Colors.grey),
-                    labelText: 'Titulaire de la carte',
+                    labelText: 'Card holder',
                   ),
                 ),
               ),
@@ -215,7 +227,7 @@ class _Meth_bodyState extends State<Meth_body> {
                         prefixIcon: Icon(Icons.date_range),
                         hintText: 'MM/YY',
                         hintStyle: TextStyle(color: Colors.grey),
-                        labelText: "Date d'exp",
+                        labelText: "Ex date",
                       ),
                     ),
                   ),
@@ -246,7 +258,7 @@ class _Meth_bodyState extends State<Meth_body> {
               SizedBox(height: getProportionateScreenHeight(30)),
               const SizedBox(
                 child: Text(
-                  "Nous vous enverrons les détails de la commande à\n     votre adresse e-mail après le paiement réussi.",
+                  "We will send the order details to your email\n       address after successful payment.",
                   style: TextStyle(
                     fontStyle: FontStyle.normal,
                     fontSize: 13,
@@ -264,7 +276,12 @@ class _Meth_bodyState extends State<Meth_body> {
                       backgroundColor:
                           MaterialStateProperty.all(Colors.redAccent)),
                   //color: Colors.red,
-                  child: const Text('Commander'),
+                  child: const Text(
+                    'Pay',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
                   onPressed: () =>
                       Navigator.pushNamed(context, Horaires_screen.routeName),
                 ),

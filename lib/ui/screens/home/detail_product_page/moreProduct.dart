@@ -46,8 +46,8 @@ class MoreProduct extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (_) =>
-                                    DetailsProductPage(product: product),
+                                builder: (_) => DetailsProductPage(
+                                    product: snapshot.data![i]),
                               ),
                             );
                           },
@@ -55,7 +55,7 @@ class MoreProduct extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Hero(
-                                tag: product.uidProduct.toString(),
+                                tag: "tag${product.uidProduct}",
                                 child: Image.network(
                                   URLS.baseUrl + product.picture,
                                   height: 113,
@@ -74,38 +74,38 @@ class MoreProduct extends StatelessWidget {
                                 color: const Color(0xFF222D61),
                               ),
                               const SizedBox(
-                                height: 20,
+                                height: 70,
                               ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 35),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      '534 TND',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          decoration:
-                                              TextDecoration.lineThrough,
-                                          decorationColor: Colors.grey,
-                                          decorationThickness: 2.0,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black54,
-                                          fontFamily: 'Poppins'),
-                                    ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text(
-                                      '24% Off',
-                                      style: TextStyle(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black54,
-                                          fontFamily: 'Poppins'),
-                                    ),
-                                  ],
-                                ),
-                              )
+                              // const Padding(
+                              //   padding: EdgeInsets.only(left: 35),
+                              //   child: Row(
+                              //     children: [
+                              //       Text(
+                              //         '534 TND',
+                              //         style: TextStyle(
+                              //             fontSize: 12,
+                              //             decoration:
+                              //                 TextDecoration.lineThrough,
+                              //             decorationColor: Colors.grey,
+                              //             decorationThickness: 2.0,
+                              //             fontWeight: FontWeight.w600,
+                              //             color: Colors.black54,
+                              //             fontFamily: 'Poppins'),
+                              //       ),
+                              //       SizedBox(
+                              //         width: 20,
+                              //       ),
+                              //       Text(
+                              //         '24% Off',
+                              //         style: TextStyle(
+                              //             fontSize: 11,
+                              //             fontWeight: FontWeight.w600,
+                              //             color: Colors.black54,
+                              //             fontFamily: 'Poppins'),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // )
                             ],
                           ),
                         ),

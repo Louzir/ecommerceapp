@@ -11,44 +11,47 @@ class Appbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.black,
-                ), // icône à utiliser
-                onPressed: () => Navigator.of(context)
-                    .pushAndRemoveUntil(routeSlide(page: Home()), (_) => false),
-              ),
-              const SizedBox(width: 110.0),
-              Column(
-                children: [
-                  const TextFrave(
-                      text: 'My Cart',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600),
-                  const SizedBox(height: 6),
-                  BlocBuilder<ProductBloc, ProductState>(
-                      builder: (_, state) => state.products != null
-                          ? TextFrave(
-                              text: '${state.products!.length} items',
-                              fontSize: 12,
-                              color: Colors.black54)
-                          : const TextFrave(
-                              text: '0 items',
-                              fontSize: 12,
-                              color: Colors.black54)),
-                ],
-              ),
-            ],
-          ),
-        ],
+    return Material(
+      elevation: 0.5,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.black,
+                  ), // icône à utiliser
+                  onPressed: () => Navigator.of(context).pushAndRemoveUntil(
+                      routeSlide(page: const Home()), (_) => false),
+                ),
+                const SizedBox(width: 110.0),
+                Column(
+                  children: [
+                    const TextFrave(
+                        text: 'My Cart',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
+                    const SizedBox(height: 4),
+                    BlocBuilder<ProductBloc, ProductState>(
+                        builder: (context, state) => state.amount == 0
+                            ? const TextFrave(
+                                text: '0 items',
+                                fontSize: 12,
+                                color: Colors.black54)
+                            : TextFrave(
+                                text: '${state.products!.length} items',
+                                fontSize: 12,
+                                color: Colors.black54)),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -18,7 +18,7 @@ class Search extends StatelessWidget {
             child: TextFormField(
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.all(11),
-                hintText: "Recherche...",
+                hintText: "Research...",
                 filled: true,
                 fillColor: Colors.white,
                 border: outlineInputBorder,

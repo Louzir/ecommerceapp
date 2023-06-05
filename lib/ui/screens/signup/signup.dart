@@ -67,7 +67,7 @@ class _SignUpPageState extends State<SignupPage> {
           modalSuccess(context, 'USER CREATED', onPressed: () {
             clear();
             Navigator.pushReplacement(
-                context, routeSlide(page:  const LoginPage()));
+                context, routeSlide(page: const LoginPage()));
           });
         }
         if (state is FailureUserState) {
@@ -84,36 +84,42 @@ class _SignUpPageState extends State<SignupPage> {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             physics: const BouncingScrollPhysics(),
             children: [
-              const SizedBox(height: 60),
-              Container(
-                padding: const EdgeInsets.only(right: 140, left: 140),
-                child: Container(
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    color: Color(0xff6c63ff),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(16.0),
-                    ),
-                  ),
-                  child: SizedBox(
-                    child: Image.asset('assets/logo.png'),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              const SizedBox(
-                height: 50,
-                child: Text(
-                  'Bienvenue marque B',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 10, 69, 220),
-                    fontSize: 20,
-                  ),
-                ),
-              ),
               const SizedBox(height: 30),
+              // Container(
+              //   padding: const EdgeInsets.only(right: 140, left: 140),
+              //   child: Container(
+              //     height: 80,
+              //     decoration: const BoxDecoration(
+              //       color: Color(0xff6c63ff),
+              //       borderRadius: BorderRadius.all(
+              //         Radius.circular(16.0),
+              //       ),
+              //     ),
+              //     child: SizedBox(
+              //       child: Image.asset('assets/logo.png'),
+              //     ),
+              //   ),
+              // ),
+              Container(
+                  height: 180,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/logoVF.png')))),
+              // const SizedBox(height: 0),
+              // const SizedBox(
+              //   height: 40,
+              //   child: Text(
+              //     'Welcome',
+              //     textAlign: TextAlign.center,
+              //     style: TextStyle(
+              //       fontWeight: FontWeight.bold,
+              //       color: Color(0xff1E4DD8),
+              //       fontSize: 20,
+              //     ),
+              //   ),
+              // ),
+              const SizedBox(height: 0),
               TextFormField(
                 controller: userController,
                 validator:
@@ -306,7 +312,7 @@ class _SignUpPageState extends State<SignupPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>  const LoginPage()));
+                              builder: (context) => const LoginPage()));
                     },
                     child: const Text('LogIn',
                         style: TextStyle(fontSize: 16, color: Colors.black)),

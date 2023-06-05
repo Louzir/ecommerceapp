@@ -48,7 +48,7 @@ class _FavoritePageState extends State<FavoritePage> {
               color: Colors.black,
             ), // icône à utiliser
             onPressed: () => Navigator.of(context)
-                .pushAndRemoveUntil(routeSlide(page: Home()), (_) => false),
+                .pushAndRemoveUntil(routeSlide(page: const Home()), (_) => false),
           ),
           title: const Text(
             "Favorites",
