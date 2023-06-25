@@ -134,7 +134,7 @@ class HomePage4State extends State<HomePage> {
             InkWell(
               borderRadius: BorderRadius.circular(20.0),
               onTap: () => Navigator.of(context).pushAndRemoveUntil(
-                  routeSlide(page: const PanierScreen()), (_) => false),
+                  routeSlide(page:  const PanierScreen()), (_) => false),
               child: Stack(
                 children: [
                   FadeInRight(

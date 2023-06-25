@@ -37,15 +37,18 @@ class Appbar extends StatelessWidget {
                         fontWeight: FontWeight.w600),
                     const SizedBox(height: 4),
                     BlocBuilder<ProductBloc, ProductState>(
-                        builder: (context, state) => state.amount == 0
-                            ? const TextFrave(
-                                text: '0 items',
-                                fontSize: 12,
-                                color: Colors.black54)
-                            : TextFrave(
-                                text: '${state.products!.length} items',
-                                fontSize: 12,
-                                color: Colors.black54)),
+                        // builder: (_, state) => TextFrave(text: '${state.products.length} items', fontSize: 19, color: Colors.black54 ),
+                          builder: (_, state) {
+                        if (state.products == null) {
+                          return const TextFrave(
+                              text: '0 items', fontSize: 19, color: Colors.black54);
+                        }
+
+                        return TextFrave(
+                            text: '${state.products?.length} items',
+                            fontSize: 19,
+                            color: Colors.black54);
+                      }),
                   ],
                 ),
               ],

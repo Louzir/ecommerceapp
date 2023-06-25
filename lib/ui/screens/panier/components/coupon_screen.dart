@@ -21,7 +21,7 @@ class CouponScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               const Text(
-                'Entrer le code coupon',
+                'Enter coupon code',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
@@ -30,7 +30,7 @@ class CouponScreen extends StatelessWidget {
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Code coupon',
+                    labelText: 'Coupon code',
                   ),
                 ),
               ),
@@ -43,7 +43,7 @@ class CouponScreen extends StatelessWidget {
                   // Faites quelque chose lorsque le bouton est cliqué, par exemple, fermer l'écran flottant.
                   Navigator.of(context).pop();
                 },
-                child: const Text('Appliquer'),
+                child: const Text('Apply'),
               ),
             ],
           ),

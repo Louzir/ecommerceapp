@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/ui/components/size_config.dart';
+import 'package:flutter_ecommerce_app/ui/screens/panier/components/coupon_screen.dart';
 import 'package:flutter_ecommerce_app/ui/screens/payement/methode_de_pay/methodepay_screen.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../../Bloc/user/user_bloc.dart';
 import '../../../../components/shimmer_frave.dart';
@@ -124,7 +126,7 @@ class _info_bodyState extends State<info_body> {
                 padding: const EdgeInsets.only(top: 30),
                 child: SizedBox(
                   width: getProportionateScreenWidth(350),
-                  height: getProportionateScreenHeight(400),
+                  height: getProportionateScreenHeight(500),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -225,6 +227,49 @@ class _info_bodyState extends State<info_body> {
                             ),
                           ],
                         ),
+                      ),
+                      SizedBox(height: getProportionateScreenHeight(25)),
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            height: getProportionateScreenWidth(40),
+                            width: getProportionateScreenWidth(40),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFF5F6F9),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: SvgPicture.asset("assets/icons/receipt.svg"),
+                          ),
+                          const Spacer(),
+                          const Text(
+                            "Enter coupon code",
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          IconButton(
+                            icon: const Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.black,
+                              size: 14,
+                            ),
+                            onPressed: () {
+                              showModalBottomSheet(
+                                backgroundColor: Colors.transparent,
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) {
+                                  return SizedBox(
+                                    height: getProportionateScreenWidth(800),
+                                    child: const CouponScreen(),
+                                  );
+                                },
+                              );
+                            }, // icône à utiliser
+                          ),
+                        ],
                       ),
                       SizedBox(height: getProportionateScreenHeight(25)),
                       SizedBox(

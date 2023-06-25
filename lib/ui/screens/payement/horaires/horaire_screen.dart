@@ -17,29 +17,23 @@ class _Horaires_screenState extends State<Horaires_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: builAppBar(context),
+      appBar: buildAppBar(context),
       body: const MyScreen(),
       bottomNavigationBar: const NavigBar(selectedMenu: MenuState.panier),
     );
   }
+}
 
-  AppBar builAppBar(BuildContext context) {
-    return AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0.5,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ), // icône à utiliser
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text(
-          "   Preferred schedule",
-          style: TextStyle(color: Colors.black),
-        ));
-  }
+AppBar buildAppBar(BuildContext context) {
+  return AppBar(
+    centerTitle: true,
+    backgroundColor: Colors.white,
+    elevation: 0.5,
+    automaticallyImplyLeading:
+        false, // Supprime l'icône de retour et le comportement de retour
+    title: const Text(
+      "Preferred schedule",
+      style: TextStyle(color: Colors.black),
+    ),
+  );
 }

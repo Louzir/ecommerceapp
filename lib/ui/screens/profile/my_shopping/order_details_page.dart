@@ -1,6 +1,7 @@
 import 'package:flutter_ecommerce_app/Models/Response/response_order_details.dart';
 import 'package:flutter_ecommerce_app/service/product_services.dart';
 import 'package:flutter_ecommerce_app/service/urls.dart';
+import 'package:flutter_ecommerce_app/ui/components/shimmer_frave.dart';
 import 'package:flutter_ecommerce_app/ui/components/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -16,10 +17,7 @@ class OrderDetailsPage extends StatelessWidget {
         child: FutureBuilder<List<OrderDetail>>(
             future: productServices.getOrderDetails(uidOrder),
             builder: (context, snapshot) => !snapshot.hasData
-                ? Container(
-                    alignment: Alignment.center,
-                    child: const Text("No shopping yet!!"),
-                  )
+                ? const ShimmerFrave()
                 : _ListOrderDetails(orderDetails: snapshot.data!)),
       ),
     );
