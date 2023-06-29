@@ -142,7 +142,7 @@ class _DetailsProducts extends StatelessWidget {
                       child: (state.products != null &&
                               state.products![i].image != null)
                           ? Image.network(
-                              URLS.baseUrl + state.products![i].image)
+                               state.products![i].image)
                           : const Placeholder(),
                     ), // Or any other placeholder widget
                     const SizedBox(width: 10.0),

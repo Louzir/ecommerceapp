@@ -68,7 +68,7 @@ class _ListProductsForHomeState extends State<ListProductsForHome> {
                               child: Hero(
                                   tag: snapshot.data![i].uidProduct.toString(),
                                   child: Image.network(
-                                      URLS.baseUrl + snapshot.data![i].picture,
+                                       snapshot.data![i].picture,
                                       height: 113)),
                             ),
                             TextFrave(

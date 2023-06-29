@@ -115,7 +115,6 @@ class _CategoryProductsPageState extends State<CategoryProductsPage> {
                                                     .data![i].uidProduct
                                                     .toString(),
                                                 child: Image.network(
-                                                  URLS.baseUrl +
                                                       snapshot.data![i].picture,
                                                   height: 120,
                                                   width: 130,

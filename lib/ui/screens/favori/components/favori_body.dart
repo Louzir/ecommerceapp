@@ -55,7 +55,7 @@ class ProductFavorite extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.network(URLS.baseUrl + product.picture, height: 120),
+                Image.network( product.picture, height: 120),
                 TextFrave(
                     text: product.nameProduct,
                     fontSize: 17,

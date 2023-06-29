@@ -17,7 +17,7 @@ class CoverProduct extends StatelessWidget {
       child: SizedBox(
         height: 250,
         width: MediaQuery.of(context).size.width,
-        child: Image.network(URLS.baseUrl+ imageProduct),
+        child: Image.network( imageProduct),
       ),
     );
   }

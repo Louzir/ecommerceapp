@@ -32,10 +32,10 @@ class Home extends StatefulWidget {
 
 String _getImagePath(int index) {
   List<String> imagePaths = [
-    'assets/services/sell.png', // Chemin de la première image
-    'assets/services/B2B.png', // Chemin de la deuxième image
-    'assets/services/food.png', // Chemin de la troisième image
-    'assets/services/shipping.png', // Chemin de la quatrième image
+    'assets/shop.png', 
+    'assets/B2B.png',
+    'assets/shipping.png', 
+    'assets/food.png', 
   ];
   return imagePaths[index];
 }
@@ -354,8 +354,7 @@ class HomePage4State extends State<HomePage> {
                                 5), // Bordure arrondie du cadre
                             image: DecorationImage(
                               image: AssetImage(
-                                _getImagePath(
-                                    index), // Méthode pour obtenir le chemin de l'image en fonction de l'index
+                                _getImagePath(index), // Méthode pour obtenir le chemin de l'image en fonction de l'index
                               ),
                               fit: BoxFit.cover,
                             ),

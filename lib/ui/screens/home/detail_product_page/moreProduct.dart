@@ -57,7 +57,7 @@ class MoreProduct extends StatelessWidget {
                               Hero(
                                 tag: "tag${product.uidProduct}",
                                 child: Image.network(
-                                  URLS.baseUrl + product.picture,
+                                   product.picture,
                                   height: 113,
                                 ),
                               ),
